@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Single-Rotor Enigma Simulator</title>
+  <style>
+    :root { --ink:#102431; --paper:#f6f0df; --brass:#c88c29; --brass-light:#f2cd77; --red:#cf4c35; --blue:#1e6670; --line:#cfbea1; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); font-family:ui-rounded, "PingFang SC", "Microsoft YaHei", sans-serif; background:radial-gradient(circle at 50% -10%, #fffbe9, #e7ddc4 68%); }
+    main { width:min(1180px, calc(100% - 32px)); margin:32px auto 56px; }
+    h1 { margin:0; font:700 clamp(1.7rem, 4vw, 2.8rem)/1.1 Georgia,serif; letter-spacing:.04em; }
+    .subtitle { margin:9px 0 25px; color:#52606a; }
+    .credit { margin:-17px 0 20px; color:#6a735f; font-size:.82rem; letter-spacing:.02em; }
+    .machine, .panel { background:rgba(255,252,243,.84); border:1px solid var(--line); box-shadow:0 12px 28px #7c69412b; border-radius:18px; }
+    .machine { padding:22px; }
+    .controls { display:grid; grid-template-columns:max-content max-content max-content max-content max-content minmax(150px, 1fr); gap:12px; align-items:center; padding-bottom:18px; border-bottom:1px dashed var(--line); }
+    .language-toggle { cursor:pointer; border:1px solid #8b7755; border-radius:8px; padding:7px 10px; color:#48391f; background:#f8e7bb; font-weight:750; }
+    label { font-weight:650; }
+    select, input[type="text"], textarea, button { font:inherit; }
+    select, input[type="text"], textarea { color:var(--ink); background:#fffdf6; border:1px solid #c7b994; border-radius:8px; padding:8px 10px; }
+    input[type="checkbox"] { accent-color:var(--red); width:17px; height:17px; vertical-align:middle; }
+    .rotor-readout { justify-self:end; width:160px; min-width:150px; text-align:center; padding:8px 14px; color:#fff8df; background:#243b44; border-radius:10px; font-family:monospace; letter-spacing:.08em; }
+    .rotor-readout b { color:var(--brass-light); font-size:1.25rem; }
+    .rotor-stage { display:grid; place-items:center; margin:20px 0 8px; }
+    .rotor-caption { width:min(680px, 100%); margin:0 auto 12px; padding:7px 12px; color:#5d654f; background:#fff9e9b8; border:1px solid #d7c49f; border-radius:8px; font-size:.84rem; font-weight:700; letter-spacing:.04em; line-height:1.55; text-align:center; }
+    .cipher-components { display:flex; justify-content:center; align-items:center; gap:42px; flex-wrap:wrap; }.cipher-component { display:grid; place-items:center; }.component-label { position:relative; z-index:10; min-height:20px; margin:0 0 42px; padding:3px 9px; color:#5d654f; background:#fff9e9; border:1px solid #d7c49f; border-radius:6px; font-size:.78rem; font-weight:800; letter-spacing:.08em; }
+    .rotor-shell { position:relative; display:grid; place-items:center; width:282px; height:282px; border:11px solid #31444a; border-radius:50%; background:repeating-conic-gradient(from -6.92deg, #e3bf68 0 1deg, #957033 1deg 2deg, #e3bf68 2deg 13.846deg); box-shadow:inset 0 0 0 5px #f4d681, 0 8px 14px #6f542a44; }
+    .plugboard-ring { position:absolute; inset:-39px; z-index:6; pointer-events:none; }.plugboard-ring-mark { position:absolute; inset:0; display:grid; place-items:start center; transform:rotate(calc(var(--mark) * 13.846deg)); }.plugboard-ring-mark span { display:block; margin-top:5px; min-width:25px; padding:1px 2px; color:#263b45; background:#d9efe9; border:1px solid #78a89e; border-radius:3px; text-align:center; white-space:nowrap; font:800 .53rem/1 monospace; transform:rotate(calc(var(--mark) * -13.846deg)); }.plugboard-ring-mark.entry span { color:#fff; background:#c84d36; border-color:#8e2d20; box-shadow:0 0 7px 3px #e8745a; }.plugboard-ring-mark.exit span { color:#fff; background:#286c77; border-color:#174f58; box-shadow:0 0 7px 3px #4ba8b6; }
+    .rotor-shell::before { content:""; position:absolute; top:-15px; left:50%; width:34px; height:24px; transform:translateX(-50%); border:3px solid #e9c76d; border-radius:4px 4px 8px 8px; background:#192e34; z-index:4; }
+    .rotor-window { position:absolute; top:5px; left:50%; z-index:5; transform:translateX(-50%); color:#fff1be; font:800 1.1rem/1 Georgia,serif; text-shadow:0 1px #000; }
+    .rotor-assembly { --rotor-angle:0deg; position:absolute; inset:0; display:grid; place-items:center; transform:rotate(var(--rotor-angle)); transition:transform .42s cubic-bezier(.22,.8,.28,1); }.rotor-assembly.forward .rotor-wheel { box-shadow:inset 0 0 0 3px #f9dc8a, 0 0 13px 6px #e8745a; }.rotor-assembly.reverse .rotor-wheel { box-shadow:inset 0 0 0 3px #f9dc8a, 0 0 13px 6px #4ba8b6; }
+    #rotorOuter { position:absolute; inset:0; }
+    .rotor-wheel { position:relative; display:grid; place-items:center; width:192px; height:192px; border:7px solid #875b28; border-radius:50%; background:radial-gradient(circle, #e7c46b 0 29%, #75471f 30% 34%, #d8a94f 35% 100%); box-shadow:inset 0 0 0 3px #f9dc8a; }
+    .rotor-wheel::after { content:""; width:54px; height:54px; border:7px dotted #4b311d; border-radius:50%; background:#d9b05c; }
+    .rotor-mark { position:absolute; inset:0; display:grid; place-items:start center; transform:rotate(calc(var(--mark) * 13.846deg)); }
+    .rotor-mark span { display:block; margin-top:5px; color:#4b311d; text-align:center; font:800 .67rem/1 monospace; text-shadow:0 1px #f9df95; transform:rotate(calc(var(--mark) * -13.846deg)); }.rotor-mark.forward span, .rotor-outer-mark.forward span { padding:1px 2px; color:#fff; background:#c84d36; border-radius:3px; box-shadow:0 0 7px 3px #e8745a; }.rotor-mark.reverse span, .rotor-outer-mark.reverse span { padding:1px 2px; color:#fff; background:#286c77; border-radius:3px; box-shadow:0 0 7px 3px #4ba8b6; }
+    .rotor-outer-mark { position:absolute; inset:0; display:grid; place-items:start center; transform:rotate(calc(var(--mark) * 13.846deg)); z-index:2; pointer-events:none; }.rotor-outer-mark span { display:block; margin-top:8px; padding:1px 2px; color:#fff1c8; font:800 .61rem/1 monospace; text-shadow:0 1px 1px #17272b; transform:rotate(calc(var(--mark) * -13.846deg)); }
+    .rotor-map-panel { width:min(620px, 100%); margin:14px auto 0; padding:10px; border:1px solid #c5ae7d; border-radius:8px; background:#fff9e9; }.rotor-map-title { margin:0 0 7px; color:#66532c; font-size:.75rem; font-weight:800; text-align:center; letter-spacing:.04em; }.rotor-map-grid { display:grid; grid-template-columns:repeat(13, minmax(0, 1fr)); gap:3px; }.rotor-map-cell { padding:4px 1px; border-radius:3px; color:#503e22; background:#efe2c5; text-align:center; font:700 .68rem/1.15 ui-monospace,Menlo,monospace; }.rotor-map-cell.forward { color:#fff; background:#c84d36; box-shadow:0 0 5px #e8745a; }.rotor-map-cell.reverse { color:#fff; background:#286c77; box-shadow:0 0 5px #4ba8b6; }
+    .reflector-shell { position:relative; display:grid; place-items:center; width:244px; height:244px; border:11px solid #3e4b56; border-radius:50%; background:repeating-conic-gradient(from -6.92deg, #bcc8cd 0 1deg, #647680 1deg 2deg, #bcc8cd 2deg 13.846deg); box-shadow:inset 0 0 0 5px #e1e7e7, 0 8px 14px #56626b44; }
+    #reflectorOuter { position:absolute; inset:0; }.reflector-wheel { position:relative; display:grid; place-items:center; width:164px; height:164px; border:7px solid #536873; border-radius:50%; background:radial-gradient(circle, #c7d0d1 0 29%, #405560 30% 34%, #aab8bc 35% 100%); box-shadow:inset 0 0 0 3px #edf2ee; }.reflector-wheel::after { content:"↔"; display:grid; place-items:center; width:53px; height:53px; border:2px solid #49606a; border-radius:50%; color:#30464f; font:800 1.5rem/1 Georgia,serif; }
+    .reflector-mark, .reflector-outer-mark { position:absolute; inset:0; display:grid; place-items:start center; transform:rotate(calc(var(--mark) * 13.846deg)); }.reflector-mark span { display:block; margin-top:5px; padding:1px 2px; color:#263942; font:800 .62rem/1 monospace; transform:rotate(calc(var(--mark) * -13.846deg)); }.reflector-outer-mark { z-index:2; pointer-events:none; }.reflector-outer-mark span { display:block; margin-top:8px; color:#f1fbfa; font:800 .58rem/1 monospace; text-shadow:0 1px 1px #17272b; transform:rotate(calc(var(--mark) * -13.846deg)); }.reflector-mark.active span, .reflector-outer-mark.active span { color:#482400; background:#ffd45f; border-radius:3px; box-shadow:0 0 8px 3px #f2a92f; }
+    .rotor-pointer { position:absolute; z-index:3; top:27px; left:50%; width:2px; height:18px; transform:translateX(-50%); background:#b93829; box-shadow:0 0 0 1px #f8e4a1; }
+    .route { margin:22px 0 19px; position:relative; display:grid; grid-template-columns:repeat(5, 1fr); gap:10px; }
+    .route::before { content:""; position:absolute; height:3px; top:50%; left:8%; right:8%; background:#cbbd9f; z-index:0; }
+    .route-node { min-height:88px; padding:12px 6px; position:relative; z-index:1; border:2px solid #a6926c; border-radius:12px; background:#fbf3dd; text-align:center; display:flex; flex-direction:column; justify-content:center; transition:.22s; }
+    .route-node .stage { color:#647069; font-size:.78rem; font-weight:700; }
+    .route-node .letter { min-height:35px; font:800 1.75rem/1.1 Georgia,serif; color:#42535a; }.route-node .letter small { display:block; margin-top:5px; font:700 .64rem/1.15 ui-monospace,Menlo,monospace; letter-spacing:0; }
+    .route-node.active { transform:translateY(-5px); border-color:#f5d36e; color:#fff; background:var(--red); box-shadow:0 0 0 4px #e8725650, 0 6px 13px #7d281d55; }
+    .route-node.active .stage, .route-node.active .letter { color:#fff9df; }
+    .path-text { min-height:26px; text-align:center; color:#6e5e42; font-family:monospace; font-size:.92rem; }
+    .keyboard, .lampboard { display:grid; gap:8px; }
+    .typewriter-row { display:flex; justify-content:center; gap:7px; }
+    .typewriter-row:nth-child(2) { padding-left:4.5%; }
+    .typewriter-row:nth-child(3) { padding-left:9%; }
+    .key, .lamp { width:clamp(31px, 6.4vw, 56px); }
+    .key { min-height:45px; cursor:pointer; border:0; border-radius:7px; color:#fff9e8; background:#28454a; box-shadow:0 4px 0 #183036; font-weight:800; transition:.08s; }
+    .key:hover { background:#37646a; } .key:active, .key.down { transform:translateY(3px); box-shadow:0 1px 0 #183036; }
+    .lampboard { margin-top:16px; }
+    .lamp { display:grid; place-items:center; min-height:41px; aspect-ratio:1; border:1px solid #998158; border-radius:50%; color:#806e50; background:#d8caa9; font-weight:800; }
+    .lamp.lit { color:#5b2900; background:#ffd75c; border-color:#e59d21; box-shadow:0 0 10px 4px #ffbd2a96, inset 0 0 8px #fff7b5; }
+    .lower { display:grid; grid-template-columns:1fr 1.35fr; gap:18px; margin-top:18px; }
+    .panel { padding:18px; } h2 { margin:0 0 12px; font-size:1.06rem; } .hint { margin:0 0 12px; color:#627078; font-size:.86rem; line-height:1.5; }
+    .plug-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; }
+    .plug-pair { display:flex; align-items:center; gap:5px; color:#856d3c; border:2px solid transparent; border-radius:8px; transition:.18s; } .plug-pair input { width:100%; min-width:0; text-align:center; text-transform:uppercase; padding:7px 3px; font-weight:800; }
+    .plug-pair.plug-entry { border-color:#d65c43; background:#ffe0d6; box-shadow:0 0 8px #e5765c88; }.plug-pair.plug-exit { border-color:#2b7883; background:#d7f0ee; box-shadow:0 0 8px #55aeb888; }
+    .plug-signal { min-height:40px; display:grid; place-items:center; margin-top:12px; padding:8px; border:1px dashed #bca982; border-radius:8px; color:#5f5138; background:#fffaf0; font:700 .88rem/1.35 ui-monospace,Menlo,monospace; }.plug-signal.entry { color:#a33423; border-color:#d65c43; background:#fff0ea; }.plug-signal.exit { color:#17636e; border-color:#2b7883; background:#e8f8f6; }.plug-signal strong { font-size:1.05rem; }
+    textarea { display:block; width:100%; min-height:126px; resize:vertical; line-height:1.45; }
+    .batch-actions { display:flex; gap:10px; align-items:center; margin-top:10px; flex-wrap:wrap; }
+    button.primary { cursor:pointer; border:0; border-radius:8px; color:#fff9e8; background:var(--red); padding:9px 14px; font-weight:800; box-shadow:0 3px 0 #8d2a1f; } button.primary:active { transform:translateY(2px); box-shadow:0 1px 0 #8d2a1f; }
+    .result { margin-top:13px; padding:12px; min-height:66px; overflow-wrap:anywhere; white-space:pre-wrap; background:#20383d; border-radius:9px; color:#ffe6a1; font-family:ui-monospace,Menlo,monospace; letter-spacing:.05em; }
+    .freq-panels { display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-top:14px; }.freq-panel { padding:11px; border:1px solid #d4c5a9; border-radius:9px; background:#fffcf4; }.freq-panel h3 { margin:0 0 9px; font-size:.9rem; }.freq { display:grid; gap:5px; }.freq-row { display:grid; grid-template-columns:18px 1fr 80px; align-items:center; gap:6px; color:#596159; font-size:.74rem; }.freq-row b { text-align:center; }.freq-track { height:12px; overflow:hidden; border-radius:3px; background:#e8dfcc; }.freq-bar { display:block; height:100%; min-width:1px; border-radius:3px; }.freq-panel.before .freq-bar { background:#79979a; }.freq-panel.after .freq-bar { background:#d15a41; }.freq-value { text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }.frequency-key { margin-top:9px; color:#596159; font-size:.8rem; }
+    .notice { min-height:20px; margin-top:9px; color:#a53424; font-size:.84rem; }
+    .tabs { display:flex; gap:8px; margin:0 0 14px; border-bottom:1px solid var(--line); }.tab { cursor:pointer; border:0; border-radius:9px 9px 0 0; padding:9px 15px; color:#5f5138; background:transparent; font-weight:800; }.tab[aria-selected="true"] { color:#fff9e8; background:#28454a; }.principles { padding:24px; }.principles h2 { margin:0 0 8px; font-size:1.35rem; }.principles-intro { margin:0 0 18px; color:#53616a; line-height:1.6; }.principle-grid { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px; }.principle-card { padding:16px; border:1px solid #d4c5a9; border-radius:12px; background:#fffcf4; }.principle-card h3 { margin:0 0 8px; color:#28454a; }.principle-card p { margin:0; color:#53616a; line-height:1.6; }.principle-flow { margin-top:16px; padding:14px; border-radius:10px; color:#fff6da; background:#20383d; font:700 .88rem/1.7 ui-monospace,Menlo,monospace; white-space:pre-wrap; }
+    @media (max-width:760px) { main{width:min(100% - 20px,1180px);margin-top:18px}.machine{padding:14px}.controls{display:flex;gap:10px;flex-wrap:wrap}.route{gap:4px}.route-node{min-height:74px;font-size:.8rem}.route-node .letter{font-size:1.25rem}.rotor-caption{font-size:.76rem;letter-spacing:0}.cipher-components{gap:0}.rotor-shell,.reflector-shell{transform:scale(.72);margin:-34px}.rotor-map-grid{grid-template-columns:repeat(4, minmax(0,1fr))}.typewriter-row{gap:4px}.key,.lamp{width:clamp(25px,8.4vw,42px)}.key{min-height:38px}.lamp{min-height:34px}.lower{grid-template-columns:1fr}.freq-panels{grid-template-columns:1fr}.rotor-readout{justify-self:auto}.plug-grid{grid-template-columns:repeat(2,1fr)}.principles{padding:16px}.principle-grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+<main>
+  <h1 data-i18n="title">恩尼格码 · 单转子演示器</h1>
+  <p class="subtitle" data-i18n="subtitle">含插线板、转子、反射器、键盘与灯板。点击键盘或直接按实体键盘；每次输入都会用动画显示信号路径。</p>
+  <p class="credit">Developed by Dr. Yongxin Liu, Embry-Riddle Aeronautical University</p>
+  <nav class="tabs" role="tablist" aria-label="Application pages">
+    <button class="tab" type="button" role="tab" id="machineTab" data-tab="machine" aria-selected="true" aria-controls="machinePanel" data-principle="tabMachine">Machine</button>
+    <button class="tab" type="button" role="tab" id="principlesTab" data-tab="principles" aria-selected="false" aria-controls="principlesPanel" data-principle="tabPrinciples">Principles</button>
+  </nav>
+  <div id="machinePanel" role="tabpanel" aria-labelledby="machineTab">
+  <section class="machine">
+    <div class="controls">
+      <label><span data-i18n="rotorStart">转子初始位置</span> <select id="rotorSelect" aria-label="转子初始位置"></select></label>
+      <label><input id="stepping" type="checkbox" checked> <span data-i18n="stepEach">每个字母转动一次</span></label>
+      <label><input id="keyboardCapture" type="checkbox"> <span data-i18n="keyboardCapture">捕获实体键盘字母</span></label>
+      <button class="primary" id="resetRotor" type="button" data-i18n="resetRotor">重置转子</button>
+      <button class="language-toggle" id="languageToggle" type="button">English</button>
+      <div class="rotor-readout"><span data-i18n="rotorCurrent">转子当前位置：</span><b id="rotorPosition">A</b></div>
+    </div>
+    <div class="rotor-stage" aria-label="可视化单转子，顶部窗口显示当前字母">
+      <p class="rotor-caption" data-i18n="rotorCaption">最外固定环：插线板输出　·　转子本体：A–Z / Rotor I 固定接线（整体步进）</p>
+      <div class="cipher-components">
+        <div class="cipher-component">
+          <p class="component-label" id="rotorLabel">转子 I · 步进开启</p>
+          <div class="rotor-shell">
+            <span class="rotor-window" id="rotorWindow">A</span><span class="rotor-pointer" aria-hidden="true"></span>
+            <div class="plugboard-ring" id="plugboardRing" aria-hidden="true"></div>
+            <div class="rotor-assembly" id="rotorAssembly" aria-hidden="true">
+              <div id="rotorOuter"></div>
+              <div class="rotor-wheel" id="rotorWheel"></div>
+            </div>
+          </div>
+        </div>
+        <div class="cipher-component">
+          <p class="component-label" data-i18n="reflectorLabel">REFLECTOR B · FIXED</p>
+          <div class="reflector-shell">
+            <div id="reflectorOuter" aria-hidden="true"></div>
+            <div class="reflector-wheel" id="reflectorWheel" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+      <div class="rotor-map-panel" aria-label="Rotor I 内部固定接线"><p class="rotor-map-title" data-i18n="rotorMapTitle">Rotor I 内部固定接线（不随窗口变化）</p><div class="rotor-map-grid" id="rotorMapGrid"></div></div>
+    </div>
+    <div class="route" aria-label="信号路径动画">
+      <div class="route-node" data-stage="0"><span class="stage" data-i18n="plugboard">插线板</span><span class="letter">·</span></div>
+      <div class="route-node" data-stage="1"><span class="stage" data-i18n="rotorForward">转子 →</span><span class="letter">·</span></div>
+      <div class="route-node" data-stage="2"><span class="stage" data-i18n="reflector">反射器</span><span class="letter">·</span></div>
+      <div class="route-node" data-stage="3"><span class="stage" data-i18n="rotorReverse">转子 ←</span><span class="letter">·</span></div>
+      <div class="route-node" data-stage="4"><span class="stage" data-i18n="plugboard">插线板</span><span class="letter">·</span></div>
+    </div>
+    <div class="path-text" id="pathText" aria-live="polite" data-i18n="waiting">等待输入…</div>
+    <div class="keyboard" id="keyboard" aria-label="恩尼格码键盘"></div>
+    <div class="lampboard" id="lampboard" aria-label="恩尼格码灯板"></div>
+  </section>
+  <div class="lower">
+    <section class="panel">
+      <h2 data-i18n="plugboardTitle">替换插线板</h2>
+      <p class="hint" data-i18n="plugboardHint">填写一对不同字母即可交换，例如 A ↔ M。相同字母被重复使用时会提示错误。</p>
+      <div class="plug-grid" id="plugboard"></div>
+      <div class="plug-signal" id="plugSignal" data-i18n="plugWaiting">当前替换：等待输入…</div>
+      <div class="notice" id="plugNotice"></div>
+    </section>
+    <section class="panel">
+      <h2 data-i18n="batchTitle">批量加密</h2>
+      <p class="hint" data-i18n="batchHint">粘贴文字后按「批量处理」。只加密 A–Z；其它字符会原样保留，且不会转动转子。</p>
+      <textarea id="batchInput" placeholder="在此粘贴要加密的文字…" aria-label="批量加密输入" data-i18n-placeholder="batchPlaceholder"></textarea>
+      <div class="batch-actions"><button class="primary" id="sampleMessage" type="button" data-i18n="sampleMessage">填入示例情报</button><button class="primary" id="batchProcess" type="button" data-i18n="batchProcess">批量处理</button><span id="batchStatus"></span></div>
+      <div class="result" id="batchOutput" data-i18n="batchOutput">加密结果会出现在这里。</div>
+      <div class="frequency-key" data-i18n="frequencyKey">每张图按出现次数降序排列；每项显示 字母｜次数｜概率。</div>
+      <div class="freq-panels" aria-label="加密前后字母频率分布">
+        <section class="freq-panel before"><h3 data-i18n="beforeFrequency">加密前频率</h3><div class="freq" id="frequencyBefore"></div></section>
+        <section class="freq-panel after"><h3 data-i18n="afterFrequency">加密后频率</h3><div class="freq" id="frequencyAfter"></div></section>
+      </div>
+    </section>
+  </div>
+  </div>
+  <section class="panel principles" id="principlesPanel" role="tabpanel" aria-labelledby="principlesTab" hidden>
+    <h2 data-principle="title">How the three components work</h2>
+    <p class="principles-intro" data-principle="intro">This single-rotor demonstrator separates permanent wiring from the contact engaged at the current rotor position.</p>
+    <div class="principle-grid">
+      <article class="principle-card"><h3 data-principle="plugTitle">Plugboard</h3><p data-principle="plugText">The plugboard is a fixed, bidirectional set of letter swaps. A cable A–M makes A become M and M become A; an unconnected letter stays itself. The signal passes through it on both the outward and return paths.</p></article>
+      <article class="principle-card"><h3 data-principle="rotorTitle">Rotor</h3><p data-principle="rotorText">A rotor contains 26 permanent internal wires linking one contact face to the other. Stepping rotates the entire rotor, so the current engaged contact changes, but its internal wiring table never changes. The return path uses the same wires in reverse.</p></article>
+      <article class="principle-card"><h3 data-principle="reflectorTitle">Reflector</h3><p data-principle="reflectorText">The reflector is fixed and does not step. Its 26 contacts are wired in pairs, sending the signal back through the rotor. This makes the same configuration usable for encryption and decryption.</p></article>
+    </div>
+    <div class="principle-flow" data-principle="flow">Keyboard → plugboard → engaged rotor contact → fixed rotor wire → reflector → reverse rotor wire → plugboard → lampboard</div>
+  </section>
+</main>
+<script>
+  (() => {
+    const I18N = {
+      zh: { title:'恩尼格码 · 单转子演示器', subtitle:'含插线板、转子、反射器、键盘与灯板。点击键盘或直接按实体键盘；每次输入都会用动画显示信号路径。', rotorStart:'转子初始位置', stepEach:'每个字母转动一次', keyboardCapture:'捕获实体键盘字母', resetRotor:'重置转子', rotorCurrent:'转子当前位置：', rotorCaption:'最外固定环：插线板 原字母→输出　·　转子本体：A–Z / Rotor I 固定接线（整体步进）', rotorStepOn:'转子 I · 步进开启', rotorStepOff:'转子 I · 步进关闭', rotorMapTitle:'Rotor I 内部固定接线（不随窗口变化）', reflectorLabel:'反射器 B · 固定', plugboard:'插线板', rotorForward:'转子 →', reflector:'反射器', rotorReverse:'转子 ←', waiting:'等待输入…', plugboardTitle:'替换插线板', plugboardHint:'填写一对不同字母即可交换，例如 A ↔ M。相同字母被重复使用时会提示错误。', plugWaiting:'当前替换：等待输入…', plugEntry:'进入转子', plugExit:'离开转子', batchTitle:'批量加密', batchHint:'粘贴文字后按「批量处理」。只加密 A–Z；其它字符会原样保留，且不会转动转子。', batchPlaceholder:'在此粘贴要加密的文字…', sampleMessage:'填入示例情报', batchProcess:'批量处理', batchOutput:'加密结果会出现在这里。', frequencyKey:'每张图按出现次数降序排列；每项显示 字母｜次数｜概率。', beforeFrequency:'加密前频率', afterFrequency:'加密后频率', invalidPlug:'插线板设置无效：每对需为两个不重复的字母。', sampleLoaded:'已填入示例英文情报，可直接批量加密或自行修改。', processed:'已处理 {count} 个字母', noLetters:'没有可处理的字母。', languageButton:'English', pageTitle:'单转子恩尼格码模拟器' },
+      en: { title:'ENIGMA · Single-Rotor Demonstrator', subtitle:'Includes a plugboard, rotor, reflector, keyboard, and lampboard. Click a key or type on your physical keyboard to animate each signal path.', rotorStart:'Initial rotor position', stepEach:'Step after every letter', keyboardCapture:'Capture physical keyboard letters', resetRotor:'Reset rotor', rotorCurrent:'Rotor position: ', rotorCaption:'Fixed outer ring: plugboard source→output · Rotor body: A–Z / fixed Rotor I wiring (steps as one)', rotorStepOn:'ROTOR I · STEPPING ON', rotorStepOff:'ROTOR I · STEPPING OFF', rotorMapTitle:'Rotor I fixed internal wiring (does not change with window)', reflectorLabel:'REFLECTOR B · FIXED', plugboard:'Plugboard', rotorForward:'Rotor →', reflector:'Reflector', rotorReverse:'Rotor ←', waiting:'Waiting for input…', plugboardTitle:'Plugboard substitutions', plugboardHint:'Enter two different letters to swap them, e.g. A ↔ M. Reusing a letter is invalid.', plugWaiting:'Current substitution: waiting for input…', plugEntry:'into rotor', plugExit:'out to lampboard', batchTitle:'Batch encryption', batchHint:'Paste text and select “Process batch”. Only A–Z is encrypted; other characters are preserved and do not step the rotor.', batchPlaceholder:'Paste text to encrypt here…', sampleMessage:'Load sample dispatch', batchProcess:'Process batch', batchOutput:'The encrypted text will appear here.', frequencyKey:'Each chart is ranked by count; every entry shows letter | count | probability.', beforeFrequency:'Before encryption', afterFrequency:'After encryption', invalidPlug:'Invalid plugboard: each pair must contain two different, unused letters.', sampleLoaded:'Sample English dispatch loaded. You can process it or edit it first.', processed:'Processed {count} letters', noLetters:'No letters to process.', languageButton:'中文', pageTitle:'Single-Rotor Enigma Simulator' }
+    };
+    const PRINCIPLES = {
+      en: {
+        tabMachine:'Machine', tabPrinciples:'Principles', title:'How the three components work',
+        intro:'This single-rotor demonstrator separates permanent wiring from the contact engaged at the current rotor position.',
+        plugTitle:'Plugboard', plugText:'The plugboard is a fixed, bidirectional set of letter swaps. A cable A–M makes A become M and M become A; an unconnected letter stays itself. The signal passes through it on both the outward and return paths.',
+        rotorTitle:'Rotor', rotorText:'A rotor contains 26 permanent internal wires linking one contact face to the other. Stepping rotates the entire rotor, so the current engaged contact changes, but its internal wiring table never changes. The return path uses the same wires in reverse.',
+        reflectorTitle:'Reflector', reflectorText:'The reflector is fixed and does not step. Its 26 contacts are wired in pairs, sending the signal back through the rotor. This makes the same configuration usable for encryption and decryption.',
+        flow:'Keyboard → plugboard → engaged rotor contact → fixed rotor wire → reflector → reverse rotor wire → plugboard → lampboard'
+      },
+      zh: {
+        tabMachine:'机器', tabPrinciples:'原理说明', title:'插线板、转子与反射器的原理',
+        intro:'本单转子演示器严格区分永久固定的内部接线，以及当前窗口位置下实际咬合的接点。',
+        plugTitle:'插线板', plugText:'插线板是一组固定的双向字母交换。接入 A–M 的电缆后，A 变为 M、M 变为 A；未接线字母保持不变。信号去程和回程都会经过同一张插线表。',
+        rotorTitle:'转子', rotorText:'一个转子有 26 根永久固定的内部导线，连接两侧接点。步进会使整个转子旋转，改变当前咬合的是哪个接点；但内部接线表永远不改变。回程沿同一组导线反向通过。',
+        reflectorTitle:'反射器', reflectorText:'反射器固定且不步进。它的 26 个接点两两接线，将信号折返到转子。正因如此，同一套设置既可加密，也可解密。',
+        flow:'键盘 → 插线板 → 当前咬合的转子接点 → 转子固定导线 → 反射器 → 转子反向导线 → 插线板 → 灯板'
+      }
+    };
+    let language = 'en';
+    const t = key => I18N[language][key] ?? key;
+    function applyLanguage() {
+      document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en'; document.title = t('pageTitle');
+      document.querySelectorAll('[data-i18n]').forEach(node => { if (node.id !== 'batchOutput' || node.dataset.hasResult !== 'true') node.textContent = t(node.dataset.i18n); });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(node => { node.placeholder = t(node.dataset.i18nPlaceholder); });
+      document.querySelector('#languageToggle').textContent = t('languageButton');
+      renderPrinciples();
+      const modeLabel = document.querySelector('#rotorLabel'); if (modeLabel) modeLabel.textContent = t(document.querySelector('#stepping').checked ? 'rotorStepOn' : 'rotorStepOff');
+      document.querySelectorAll('.plug-pair input').forEach((input, i) => { input.setAttribute('aria-label', language === 'zh' ? `插线板第${Math.floor(i / 2) + 1}对${i % 2 ? '右' : '左'}侧字母` : `Plugboard pair ${Math.floor(i / 2) + 1}, ${i % 2 ? 'right' : 'left'} letter`); });
+    }
+    function renderPrinciples() { document.querySelectorAll('[data-principle]').forEach(node => { node.textContent = PRINCIPLES[language][node.dataset.principle]; }); }
+    const ABC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const ROTOR = 'EKMFLGDQVZNTOWYHXUSPAIBRCJ'; // Rotor I wiring
+    const REFLECTOR = 'YRUHQSLDPXNGOKMIEBFZCWVJAT'; // Reflector B
+    const ROTOR_I = Object.freeze({ name: 'I', wiring: ROTOR, contacts: Object.freeze(ABC.split('').map((input, slot) => Object.freeze({ slot, input, output: ROTOR[slot] }))) });
+    const index = char => ABC.indexOf(char);
+    const letter = num => ABC[(num + 26) % 26];
+    const ROTOR_STEP_ANGLE = 360 / 26;
+    const rotorState = { position: 0, initialPosition: 0, visualAngle: 0, snapshot: null, trace: null };
+    let animationTimer = null, animationTimers = [];
+    const selectors = {
+      rotor: document.querySelector('#rotorSelect'), position: document.querySelector('#rotorPosition'), label: document.querySelector('#rotorLabel'), assembly: document.querySelector('#rotorAssembly'), wheel: document.querySelector('#rotorWheel'), outer: document.querySelector('#rotorOuter'), plugRing: document.querySelector('#plugboardRing'), mapGrid: document.querySelector('#rotorMapGrid'), reflectorWheel: document.querySelector('#reflectorWheel'), reflectorOuter: document.querySelector('#reflectorOuter'), window: document.querySelector('#rotorWindow'), stepping: document.querySelector('#stepping'), keyboardCapture: document.querySelector('#keyboardCapture'),
+      route: [...document.querySelectorAll('.route-node')], path: document.querySelector('#pathText'), keyboard: document.querySelector('#keyboard'), lamps: document.querySelector('#lampboard'),
+      plugs: document.querySelector('#plugboard'), plugSignal: document.querySelector('#plugSignal'), notice: document.querySelector('#plugNotice'), input: document.querySelector('#batchInput'), output: document.querySelector('#batchOutput'), frequencyBefore: document.querySelector('#frequencyBefore'), frequencyAfter: document.querySelector('#frequencyAfter'), status: document.querySelector('#batchStatus')
+    };
+    ABC.split('').forEach(char => { const option = new Option(char, char); selectors.rotor.add(option); });
+    const defaultPairs = [['A','M'], ['F','I'], ['N','V'], ['P','S'], ['T','U'], ['', '']];
+    const SAMPLE_MESSAGE = 'TO NORTH STAR: WEATHER WINDOW OPENS AT DAWN. MOVE THE FIELD RADIO TO THE OLD MILL AND WAIT FOR THE GREEN LAMP SIGNAL. SUPPLIES ARRIVE BY RIVER AT NINETEEN HUNDRED HOURS. ACKNOWLEDGE WITH THE WORD LANTERN.';
+    defaultPairs.forEach(([a,b], i) => selectors.plugs.insertAdjacentHTML('beforeend', `<label class="plug-pair"><input maxlength="1" value="${a}" data-pair="${i}" aria-label="插线板第${i+1}对左侧字母">↔<input maxlength="1" value="${b}" data-pair="${i}" aria-label="插线板第${i+1}对右侧字母"></label>`));
+    const TYPEWRITER_ROWS = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'];
+    TYPEWRITER_ROWS.forEach(row => {
+      selectors.keyboard.insertAdjacentHTML('beforeend', `<div class="typewriter-row">${[...row].map(char => `<button class="key" type="button" data-key="${char}">${char}</button>`).join('')}</div>`);
+      selectors.lamps.insertAdjacentHTML('beforeend', `<div class="typewriter-row">${[...row].map(char => `<div class="lamp" data-lamp="${char}">${char}</div>`).join('')}</div>`);
+    });
+    ABC.split('').forEach((char, i) => {
+      selectors.plugRing.insertAdjacentHTML('beforeend', `<i class="plugboard-ring-mark" data-plug-input="${char}" style="--mark:${i}"><span>${char}</span></i>`);
+      selectors.outer.insertAdjacentHTML('beforeend', `<i class="rotor-outer-mark" data-outer-index="${i}" style="--mark:${i}"><span>${char}</span></i>`);
+      selectors.wheel.insertAdjacentHTML('beforeend', `<i class="rotor-mark" data-rotor-index="${i}" style="--mark:${i}"><span>${ROTOR[i]}</span></i>`);
+      selectors.mapGrid.insertAdjacentHTML('beforeend', `<span class="rotor-map-cell" data-rotor-map-input="${char}">${char} → ·</span>`);
+      selectors.reflectorOuter.insertAdjacentHTML('beforeend', `<i class="reflector-outer-mark" data-reflector-outer="${char}" style="--mark:${i}"><span>${char}</span></i>`);
+      selectors.reflectorWheel.insertAdjacentHTML('beforeend', `<i class="reflector-mark" data-reflector-index="${i}" style="--mark:${i}"><span>${REFLECTOR[i]}</span></i>`);
+    });
+    function cleanInputs() { document.querySelectorAll('.plug-pair input').forEach(input => { input.value = input.value.toUpperCase().replace(/[^A-Z]/g, ''); }); }
+    function plugMapping() {
+      cleanInputs(); const map = Object.fromEntries(ABC.split('').map(x => [x,x])); const used = new Set();
+      for (const pair of selectors.plugs.querySelectorAll('.plug-pair')) {
+        const [a,b] = [...pair.querySelectorAll('input')].map(input => input.value);
+        if (!a && !b) continue;
+        if (!a || !b || a === b || used.has(a) || used.has(b)) { selectors.notice.textContent = t('invalidPlug'); return null; }
+        used.add(a); used.add(b); map[a] = b; map[b] = a;
+      }
+      selectors.notice.textContent = ''; return map;
+    }
+    function renderPlugboardRing(map) { document.querySelectorAll('.plugboard-ring-mark').forEach((mark, i) => { mark.querySelector('span').textContent = `${ABC[i]}→${map[ABC[i]]}`; }); }
+    // Model layer: all signal values are created once in an immutable machine snapshot.
+    function createRotorSnapshot(position) {
+      const forwardByFrame = {}, reverseByRotorContact = {};
+      ABC.split('').forEach(frameInput => {
+        const forwardEntry = letter(index(frameInput) + position);
+        const forwardExit = ROTOR_I.wiring[index(forwardEntry)];
+        forwardByFrame[frameInput] = Object.freeze({ frameInput, rotorEntry: forwardEntry, rotorExit: forwardExit });
+      });
+      ABC.split('').forEach(rotorEntry => {
+        const rotorExit = ABC[ROTOR_I.wiring.indexOf(rotorEntry)];
+        reverseByRotorContact[rotorEntry] = Object.freeze({ rotorEntry, rotorExit, frameOutput: letter(index(rotorExit) - position) });
+      });
+      // Internal rotor and reflector contacts use their own fixed labels.  Window
+      // position is applied only at the fixed plugboard-to-rotor boundary.
+      return Object.freeze({ position, contacts: ROTOR_I.contacts, forwardByFrame: Object.freeze(forwardByFrame), reverseByRotorContact: Object.freeze(reverseByRotorContact) });
+    }
+    function createMachineSnapshot(position, plugboard) {
+      const frozenPlugboard = Object.freeze({ ...plugboard });
+      const rotor = createRotorSnapshot(position);
+      const connections = {};
+      ABC.split('').forEach(key => { const plugOutput = frozenPlugboard[key]; connections[key] = Object.freeze({ key, plugOutput, rotorForward: rotor.forwardByFrame[plugOutput] }); });
+      return Object.freeze({ position, plugboard: frozenPlugboard, rotor, connections: Object.freeze(connections) });
+    }
+    function refreshSnapshot() {
+      const plugboard = plugMapping(); if (!plugboard) return false;
+      rotorState.snapshot = createMachineSnapshot(rotorState.position, plugboard);
+      return true;
+    }
+    function buildTrace(snapshot, input) {
+      const plugForward = snapshot.connections[input];
+      const rotorForward = plugForward.rotorForward;
+      const reflector = Object.freeze({ input: rotorForward.rotorExit, output: REFLECTOR[index(rotorForward.rotorExit)] });
+      const rotorReverse = snapshot.rotor.reverseByRotorContact[reflector.output];
+      const plugReverse = Object.freeze({ input: rotorReverse.frameOutput, output: snapshot.plugboard[rotorReverse.frameOutput] });
+      return Object.freeze({ input, snapshot, plugForward, rotorForward, reflector, rotorReverse, plugReverse, output: plugReverse.output });
+    }
+    function stopAnimationTimers() {
+      clearTimeout(animationTimer); animationTimers.forEach(clearTimeout); animationTimers = [];
+    }
+    function processLetter(char, showAnimation = true) {
+      if (selectors.stepping.checked) { rotorState.position = (rotorState.position + 1) % 26; rotorState.visualAngle -= ROTOR_STEP_ANGLE; }
+      if (!refreshSnapshot()) return null;
+      rotorState.trace = buildTrace(rotorState.snapshot, char);
+      renderPlugboardRing(rotorState.snapshot.plugboard);
+      renderRotor();
+      if (showAnimation) animate(rotorState.trace);
+      return rotorState.trace.output;
+    }
+    function renderRotorMap(snapshot = rotorState.snapshot) {
+      if (!snapshot) return;
+      // This panel intentionally renders the immutable Rotor I table, never the
+      // position-dependent effective substitution.
+      snapshot.rotor.contacts.forEach(contact => {
+        document.querySelector(`[data-rotor-map-input="${contact.input}"]`).textContent = `${contact.input} → ${contact.output}`;
+      });
+    }
+    function renderRotor() {
+      const current = letter(rotorState.position);
+      selectors.position.textContent = current; selectors.window.textContent = current;
+      selectors.label.textContent = t(selectors.stepping.checked ? 'rotorStepOn' : 'rotorStepOff');
+      selectors.assembly.style.setProperty('--rotor-angle', `${rotorState.visualAngle}deg`);
+      document.querySelectorAll('.rotor-outer-mark span').forEach((span, i) => { span.style.transform = `rotate(${-i * ROTOR_STEP_ANGLE + rotorState.position * ROTOR_STEP_ANGLE}deg)`; });
+      document.querySelectorAll('.rotor-mark span').forEach((span, i) => { span.style.transform = `rotate(${-i * ROTOR_STEP_ANGLE + rotorState.position * ROTOR_STEP_ANGLE}deg)`; });
+      // Rendering reads the current immutable snapshot; it never recalculates wiring.
+      renderRotorMap(rotorState.snapshot);
+    }
+    function clearSignalHighlights() { renderRotorMap(rotorState.snapshot); document.querySelectorAll('.plugboard-ring-mark.entry, .plugboard-ring-mark.exit, .rotor-assembly.forward, .rotor-assembly.reverse, .rotor-mark.forward, .rotor-mark.reverse, .rotor-outer-mark.forward, .rotor-outer-mark.reverse, .rotor-map-cell.forward, .rotor-map-cell.reverse, .reflector-mark.active, .reflector-outer-mark.active, .plug-pair.plug-entry, .plug-pair.plug-exit').forEach(node => node.classList.remove('entry', 'exit', 'forward', 'reverse', 'active', 'plug-entry', 'plug-exit')); }
+    function highlightPlug(char, state) { for (const pair of selectors.plugs.querySelectorAll('.plug-pair')) if ([...pair.querySelectorAll('input')].some(input => input.value === char)) pair.classList.add(state); }
+    function highlightPlugRing(input, state) { document.querySelector(`[data-plug-input="${input}"]`)?.classList.add(state); }
+    function showPlugSignal(from, to, state) { selectors.plugSignal.className = `plug-signal ${state}`; selectors.plugSignal.innerHTML = `${state === 'entry' ? t('plugEntry') : t('plugExit')}：<strong>${from} → ${to}</strong>`; }
+    function highlightRotor(trace, direction) {
+      // The physical contact was computed by the snapshot; rendering never derives
+      // a live rotor position or a second mapping.
+      const signal = direction === 'forward' ? trace.rotorForward : trace.rotorReverse;
+      // In reverse, `rotorExit → rotorEntry` traverses the same fixed wire backward.
+      const fixedWireInput = direction === 'forward' ? signal.rotorEntry : signal.rotorExit;
+      const coreIndex = index(fixedWireInput);
+      document.querySelector(`[data-rotor-index="${coreIndex}"]`)?.classList.add(direction);
+      document.querySelector(`[data-outer-index="${coreIndex}"]`)?.classList.add(direction);
+      selectors.assembly.classList.add(direction);
+      const mapCell = document.querySelector(`[data-rotor-map-input="${fixedWireInput}"]`);
+      mapCell?.classList.add(direction);
+    }
+    function highlightReflector(inputLetter) { const mapIndex = index(inputLetter); document.querySelector(`[data-reflector-outer="${inputLetter}"]`)?.classList.add('active'); document.querySelector(`[data-reflector-index="${mapIndex}"]`)?.classList.add('active'); }
+    function animate(trace) {
+      const { input, plugForward, rotorForward, reflector, rotorReverse, plugReverse } = trace;
+      stopAnimationTimers(); clearSignalHighlights(); document.querySelectorAll('.lamp.lit').forEach(x => x.classList.remove('lit'));
+      selectors.route.forEach(node => { node.classList.remove('active'); });
+      // A component card may display only that component's own contacts.
+      selectors.route[0].querySelector('.letter').textContent = `${input} → ${plugForward.plugOutput}`;
+      selectors.route[1].querySelector('.letter').textContent = `${rotorForward.rotorEntry} → ${rotorForward.rotorExit}`;
+      selectors.route[2].querySelector('.letter').textContent = `${reflector.input} → ${reflector.output}`;
+      selectors.route[3].querySelector('.letter').textContent = `${rotorReverse.rotorEntry} ← ${rotorReverse.rotorExit}`;
+      selectors.route[4].querySelector('.letter').textContent = `${plugReverse.input} → ${plugReverse.output}`;
+      selectors.path.textContent = `${input} → ${plugForward.plugOutput}  |  ${rotorForward.rotorEntry} → ${rotorForward.rotorExit}  |  ${reflector.input} → ${reflector.output}  |  ${rotorReverse.rotorEntry} ← ${rotorReverse.rotorExit}  |  ${plugReverse.input} → ${plugReverse.output}`;
+      const activate = stage => { selectors.route.forEach(node => node.classList.remove('active')); selectors.route[stage].classList.add('active'); };
+      const at = (delay, callback) => animationTimers.push(setTimeout(callback, delay));
+      at(0, () => { activate(0); highlightPlug(input, 'plug-entry'); highlightPlugRing(input, 'entry'); showPlugSignal(input, plugForward.plugOutput, 'entry'); });
+      at(170, () => { activate(1); renderRotorMap(trace.snapshot); highlightRotor(trace, 'forward'); });
+      at(340, () => { activate(2); highlightReflector(reflector.input); });
+      at(510, () => { activate(3); renderRotorMap(trace.snapshot); highlightRotor(trace, 'reverse'); });
+      at(680, () => { activate(4); highlightPlug(plugReverse.output, 'plug-exit'); highlightPlugRing(plugReverse.input, 'exit'); showPlugSignal(plugReverse.input, plugReverse.output, 'exit'); });
+      animationTimer = setTimeout(() => { document.querySelector(`[data-lamp="${plugReverse.output}"]`).classList.add('lit'); }, 800);
+    }
+    function press(char) { const result = processLetter(char); if (!result) return; const key = document.querySelector(`[data-key="${char}"]`); key.classList.add('down'); setTimeout(() => key.classList.remove('down'), 120); }
+    function distribution(text) { const counts = Object.fromEntries(ABC.split('').map(char => [char, 0])); let total = 0; for (const char of text) if (counts[char] !== undefined) { counts[char]++; total++; } return { counts, total }; }
+    function renderFrequency(before, after) {
+      const render = (target, stats) => { const ranked = Object.entries(stats.counts).sort(([a, x], [b, y]) => y - x || a.localeCompare(b)); const max = Math.max(...ranked.map(([, count]) => count), 1); target.innerHTML = ranked.map(([char, count]) => { const probability = stats.total ? count / stats.total * 100 : 0; return `<div class="freq-row"><b>${char}</b><div class="freq-track"><i class="freq-bar" style="width:${count / max * 100}%"></i></div><span class="freq-value">${count}｜${probability.toFixed(1)}%</span></div>`; }).join(''); };
+      render(selectors.frequencyBefore, distribution(before)); render(selectors.frequencyAfter, distribution(after));
+    }
+    selectors.keyboard.addEventListener('click', event => { const key = event.target.closest('[data-key]'); if (key) press(key.dataset.key); });
+    document.addEventListener('keydown', event => { if (!selectors.keyboardCapture.checked || event.ctrlKey || event.metaKey || event.altKey || event.target.matches('input, textarea, select, button')) return; const char = event.key.toUpperCase(); if (ABC.includes(char)) { event.preventDefault(); press(char); } });
+    selectors.rotor.addEventListener('change', () => { stopAnimationTimers(); rotorState.position = rotorState.initialPosition = index(selectors.rotor.value); rotorState.visualAngle = -rotorState.position * ROTOR_STEP_ANGLE; rotorState.trace = null; if (refreshSnapshot()) { clearSignalHighlights(); renderPlugboardRing(rotorState.snapshot.plugboard); renderRotor(); } });
+    document.querySelector('#resetRotor').addEventListener('click', () => { stopAnimationTimers(); rotorState.position = rotorState.initialPosition; rotorState.visualAngle = -rotorState.position * ROTOR_STEP_ANGLE; rotorState.trace = null; if (refreshSnapshot()) { clearSignalHighlights(); renderPlugboardRing(rotorState.snapshot.plugboard); renderRotor(); } });
+    selectors.stepping.addEventListener('change', renderRotor);
+    function selectTab(name) {
+      const machine = name === 'machine';
+      document.querySelector('#machinePanel').hidden = !machine;
+      document.querySelector('#principlesPanel').hidden = machine;
+      document.querySelectorAll('.tab').forEach(tab => tab.setAttribute('aria-selected', String(tab.dataset.tab === name)));
+    }
+    document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => selectTab(tab.dataset.tab)));
+    document.querySelector('#languageToggle').addEventListener('click', () => { language = language === 'zh' ? 'en' : 'zh'; applyLanguage(); });
+    selectors.plugs.addEventListener('input', () => { stopAnimationTimers(); rotorState.trace = null; if (refreshSnapshot()) { clearSignalHighlights(); renderPlugboardRing(rotorState.snapshot.plugboard); renderRotor(); } });
+    document.querySelector('#sampleMessage').addEventListener('click', () => { selectors.input.value = SAMPLE_MESSAGE; selectors.status.textContent = t('sampleLoaded'); });
+    document.querySelector('#batchProcess').addEventListener('click', () => {
+      const raw = selectors.input.value, normalized = raw.toUpperCase(); let encrypted = '', letters = 0;
+      if (!plugMapping()) return;
+      for (const char of normalized) { if (ABC.includes(char)) { encrypted += processLetter(char, false); letters++; } else encrypted += char; }
+      selectors.output.textContent = encrypted || t('noLetters'); selectors.output.dataset.hasResult = encrypted ? 'true' : 'false'; selectors.status.textContent = t('processed').replace('{count}', letters); renderFrequency(normalized, encrypted);
+      if (rotorState.trace) animate(rotorState.trace);
+    });
+    renderFrequency('', ''); if (refreshSnapshot()) renderPlugboardRing(rotorState.snapshot.plugboard); renderRotor(); applyLanguage();
+  })();
+</script>
+</body>
+</html>
