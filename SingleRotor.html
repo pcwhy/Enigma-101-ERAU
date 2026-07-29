@@ -71,8 +71,10 @@
     .result { margin-top:13px; padding:12px; min-height:66px; overflow-wrap:anywhere; white-space:pre-wrap; background:#20383d; border-radius:9px; color:#ffe6a1; font-family:ui-monospace,Menlo,monospace; letter-spacing:.05em; }
     .freq-panels { display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-top:14px; }.freq-panel { padding:11px; border:1px solid #d4c5a9; border-radius:9px; background:#fffcf4; }.freq-panel h3 { margin:0 0 9px; font-size:.9rem; }.freq { display:grid; gap:5px; }.freq-row { display:grid; grid-template-columns:18px 1fr 80px; align-items:center; gap:6px; color:#596159; font-size:.74rem; }.freq-row b { text-align:center; }.freq-track { height:12px; overflow:hidden; border-radius:3px; background:#e8dfcc; }.freq-bar { display:block; height:100%; min-width:1px; border-radius:3px; }.freq-panel.before .freq-bar { background:#79979a; }.freq-panel.after .freq-bar { background:#d15a41; }.freq-value { text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }.frequency-key { margin-top:9px; color:#596159; font-size:.8rem; }
     .notice { min-height:20px; margin-top:9px; color:#a53424; font-size:.84rem; }
-    .tabs { display:flex; gap:8px; margin:0 0 14px; border-bottom:1px solid var(--line); }.tab { cursor:pointer; border:0; border-radius:9px 9px 0 0; padding:9px 15px; color:#5f5138; background:transparent; font-weight:800; }.tab[aria-selected="true"] { color:#fff9e8; background:#28454a; }.principles { padding:24px; }.principles h2 { margin:0 0 8px; font-size:1.35rem; }.principles-intro { margin:0 0 18px; color:#53616a; line-height:1.6; }.principle-grid { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px; }.principle-card { padding:16px; border:1px solid #d4c5a9; border-radius:12px; background:#fffcf4; }.principle-card h3 { margin:0 0 8px; color:#28454a; }.principle-card p { margin:0; color:#53616a; line-height:1.6; }.principle-flow { margin-top:16px; padding:14px; border-radius:10px; color:#fff6da; background:#20383d; font:700 .88rem/1.7 ui-monospace,Menlo,monospace; white-space:pre-wrap; }
-    @media (max-width:760px) { main{width:min(100% - 20px,1180px);margin-top:18px}.machine{padding:14px}.controls{display:flex;gap:10px;flex-wrap:wrap}.route{gap:4px}.route-node{min-height:74px;font-size:.8rem}.route-node .letter{font-size:1.25rem}.rotor-caption{font-size:.76rem;letter-spacing:0}.cipher-components{gap:0}.rotor-shell,.reflector-shell{transform:scale(.72);margin:-34px}.rotor-map-grid{grid-template-columns:repeat(4, minmax(0,1fr))}.typewriter-row{gap:4px}.key,.lamp{width:clamp(25px,8.4vw,42px)}.key{min-height:38px}.lamp{min-height:34px}.lower{grid-template-columns:1fr}.freq-panels{grid-template-columns:1fr}.rotor-readout{justify-self:auto}.plug-grid{grid-template-columns:repeat(2,1fr)}.principles{padding:16px}.principle-grid{grid-template-columns:1fr} }
+    .tabs { display:flex; gap:8px; margin:0 0 14px; border-bottom:1px solid var(--line); }.tab { cursor:pointer; border:0; border-radius:9px 9px 0 0; padding:9px 15px; color:#5f5138; background:transparent; font-weight:800; }.tab[aria-selected="true"] { color:#fff9e8; background:#28454a; }.principles { padding:24px; }.principles h2 { margin:0 0 8px; font-size:1.35rem; }.principles-intro { margin:0 0 18px; color:#53616a; line-height:1.6; }.principle-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:14px; }.principle-card { padding:16px; border:1px solid #d4c5a9; border-radius:12px; background:#fffcf4; }.principle-card h3 { margin:0 0 8px; color:#28454a; }.principle-card p { margin:0; color:#53616a; line-height:1.6; }.principle-flow { margin-top:16px; padding:14px; border-radius:10px; color:#fff6da; background:#20383d; font:700 .88rem/1.7 ui-monospace,monospace; white-space:pre-wrap; }.principle-sources { margin-top:16px; padding:16px; border:1px solid #d4c5a9; border-radius:12px; background:#fffcf4; }.principle-sources h3 { margin:0 0 8px; color:#28454a; }.principle-sources ul { margin:0; padding-left:20px; color:#53616a; line-height:1.7; }.principle-sources a { color:#1b5f73; font-weight:700; }
+    .attack { padding:24px; }.attack h2 { margin:0 0 8px; font-size:1.35rem; }.attack-intro { margin:0 0 17px; color:#53616a; line-height:1.6; }.attack-grid { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(280px,.85fr); gap:18px; }.attack-field { display:grid; gap:7px; }.attack-field label { color:#4e5a5d; }.attack-field input { width:100%; text-transform:uppercase; }.ciphertext-box { min-height:116px; margin:0; padding:12px; overflow-wrap:anywhere; white-space:pre-wrap; border-radius:9px; color:#ffe6a1; background:#20383d; font:.88rem/1.6 ui-monospace,Menlo,monospace; letter-spacing:.06em; }.attack-note { margin:11px 0 0; color:#69726f; font-size:.82rem; line-height:1.5; }.candidate-group { margin-top:16px; border:1px solid #d4c5a9; border-radius:10px; background:#fffaf0; }.candidate-group summary { cursor:pointer; padding:12px 14px; color:#5c5b48; font-weight:750; }.candidate-group[open] summary { border-bottom:1px solid #ded0b7; }.candidate-list { display:grid; gap:8px; max-height:520px; padding:10px; overflow:auto; }.candidate { width:100%; display:grid; grid-template-columns:92px minmax(120px,1fr) minmax(160px,1.4fr); gap:10px; align-items:center; padding:10px 12px; border:1px solid #d4c5a9; border-radius:9px; background:#fffcf4; text-align:left; font:.78rem/1.45 ui-monospace,Menlo,monospace; }.candidate:hover,.candidate.selected { border-color:#b54b34; background:#fff0df; box-shadow:0 0 0 2px #e17b5b44; }.candidate b { color:#7b3e25; }.candidate .pairs { overflow-wrap:anywhere; color:#52636a; }.bombe-run { margin-top:16px; border:1px solid #bca982; border-radius:10px; background:#fffaf0; }.bombe-run summary { cursor:pointer; padding:12px 14px; color:#5c5138; font-weight:800; }.bombe-run[open] summary { border-bottom:1px solid #ded0b7; }.bombe-run-body { padding:14px; }.bombe-run-actions { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:11px; }.bombe-progress { margin-top:12px; }.bombe-progress progress { width:100%; height:16px; accent-color:#c84d36; }.bombe-progress span { display:block; margin-top:4px; color:#5c5b48; font:.78rem/1.4 ui-monospace,Menlo,monospace; }.bombe-result { margin-top:14px; }.bombe-result h3 { margin:0 0 8px; font-size:.93rem; }.bombe-list { display:grid; gap:7px; max-height:420px; overflow:auto; }.bombe-row { padding:9px 10px; border:1px solid #dbc9ab; border-radius:8px; background:#fffdf6; color:#56615e; font:.77rem/1.45 ui-monospace,Menlo,monospace; }.bombe-row.pass { border-color:#6d9e78; background:#edf8ed; color:#28613b; }.bombe-row b { color:#913b29; }.bombe-row.pass b { color:#28613b; }.check-stop { margin-top:14px; padding:12px; border:1px solid #8fb09a; border-radius:9px; background:#f0f8ed; }.check-stop h3 { margin:0 0 7px; color:#28613b; font-size:.93rem; }.check-stop p { margin:6px 0; font:.78rem/1.5 ui-monospace,Menlo,monospace; }.check-stop button { margin-top:6px; }
+    .modern-actions { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:14px 0; }.modern-progress progress { width:min(600px,100%); height:16px; accent-color:#c84d36; }.modern-progress span { display:block; margin-top:4px; color:#5c5b48; font:.78rem/1.4 ui-monospace,Menlo,monospace; }.modern-stage { margin-top:14px; border:1px solid #d4c5a9; border-radius:10px; background:#fffaf0; }.modern-stage summary { cursor:pointer; padding:12px 14px; color:#5c5b48; font-weight:800; }.modern-stage[open] summary { border-bottom:1px solid #ded0b7; }.modern-stage-body { padding:14px; }.modern-stage pre { margin:9px 0 0; padding:10px; overflow:auto; border-radius:7px; color:#3f4e51; background:#f4eee2; font:.78rem/1.5 ui-monospace,Menlo,monospace; white-space:pre-wrap; overflow-wrap:anywhere; }.modern-stage a { color:#8e3d28; }.modern-meta { display:grid; grid-template-columns:max-content 1fr; gap:5px 12px; font:.83rem/1.45 ui-monospace,Menlo,monospace; }.modern-meta dt { color:#75654a; }.modern-meta dd { margin:0; color:#344c51; }.modern-rounds { display:grid; gap:10px; }.modern-round { padding:10px; border:1px solid #dbc9ab; border-radius:8px; background:#fffdf6; }.modern-round summary { cursor:pointer; color:#70402d; font-weight:750; }.modern-round[open] summary { margin-bottom:9px; }.modern-round h4 { margin:0; color:#7b3e25; font-size:.86rem; }.model-file { max-width:100%; }.score-chart { width:100%; min-width:560px; height:auto; margin:5px 0 15px; overflow:visible; }.score-chart-wrap { overflow-x:auto; padding:4px 0; }.score-chart .grid { stroke:#d9cfbd; stroke-width:1; }.score-chart .axis { stroke:#77684c; stroke-width:1.3; }.score-chart .tick { fill:#6d6657; font:11px ui-monospace,Menlo,monospace; }.score-chart .axis-label { fill:#4a595a; font:700 12px system-ui,sans-serif; }.score-chart .bar { fill:#d05b42; }.score-chart .bar.drop { fill:#8b7c5c; }.score-chart .bar-label { fill:#4b4030; font:11px ui-monospace,Menlo,monospace; }
+    @media (max-width:760px) { main{width:min(100% - 20px,1180px);margin-top:18px}.machine{padding:14px}.controls{display:flex;gap:10px;flex-wrap:wrap}.route{gap:4px}.route-node{min-height:74px;font-size:.8rem}.route-node .letter{font-size:1.25rem}.rotor-caption{font-size:.76rem;letter-spacing:0}.cipher-components{gap:0}.rotor-shell,.reflector-shell{transform:scale(.72);margin:-34px}.rotor-map-grid{grid-template-columns:repeat(4, minmax(0,1fr))}.typewriter-row{gap:4px}.key,.lamp{width:clamp(25px,8.4vw,42px)}.key{min-height:38px}.lamp{min-height:34px}.lower{grid-template-columns:1fr}.freq-panels{grid-template-columns:1fr}.rotor-readout{justify-self:auto}.plug-grid{grid-template-columns:repeat(2,1fr)}.principles,.attack{padding:16px}.principle-grid,.attack-grid{grid-template-columns:1fr}.candidate{grid-template-columns:1fr;gap:3px} }
   </style>
 </head>
 <body>
@@ -82,6 +84,8 @@
   <p class="credit">Developed by Dr. Yongxin Liu, Embry-Riddle Aeronautical University</p>
   <nav class="tabs" role="tablist" aria-label="Application pages">
     <button class="tab" type="button" role="tab" id="machineTab" data-tab="machine" aria-selected="true" aria-controls="machinePanel" data-principle="tabMachine">Machine</button>
+    <button class="tab" type="button" role="tab" id="modernTab" data-tab="modern" aria-selected="false" aria-controls="modernPanel" data-modern-i18n="tab">Modern Crack</button>
+    <button class="tab" type="button" role="tab" id="bombeTab" data-tab="bombe" aria-selected="false" aria-controls="bombePanel" data-bombe-i18n="tab">The Bombe</button>
     <button class="tab" type="button" role="tab" id="principlesTab" data-tab="principles" aria-selected="false" aria-controls="principlesPanel" data-principle="tabPrinciples">Principles</button>
   </nav>
   <div id="machinePanel" role="tabpanel" aria-labelledby="machineTab">
@@ -151,6 +155,35 @@
     </section>
   </div>
   </div>
+  <section class="panel attack" id="modernPanel" role="tabpanel" aria-labelledby="modernTab" hidden>
+    <h2 data-modern-i18n="title">Modern ciphertext-only crack</h2>
+    <p class="attack-intro" data-modern-i18n="intro">No crib is used. The fixed demonstrator ciphertext is attacked under the known simplified machine model: one rotor, stepping enabled, and exactly five plugboard pairs.</p>
+    <div class="attack-grid">
+      <div><h3 data-modern-i18n="cipherTitle">Ciphertext under attack</h3><p class="ciphertext-box" id="modernCiphertext"></p></div>
+      <div><h3 data-modern-i18n="modelTitle">Language model</h3><p class="attack-note" data-modern-i18n="modelNote">Load an English quadgram file. The default public table is 3.14 MB; you may upload a compatible custom model instead.</p><a id="modelDefaultLink" target="_blank" rel="noopener" data-modern-i18n="modelLink">Default English quadgram download</a><p><input class="model-file" id="modelFile" type="file" accept=".txt,text/plain"><br><small data-modern-i18n="modelFormat">Format: one `ABCD 123` count per line.</small></p><label for="modernLeadCount" data-modern-i18n="leadCount">Plugboard pairs to enumerate</label><select id="modernLeadCount" aria-label="Plugboard pairs to enumerate"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option><option value="6">6</option></select></div>
+    </div>
+    <div class="modern-actions"><button class="primary" id="runModernCrack" type="button" data-modern-i18n="run">Load model and run crack</button><span class="notice" id="modernNotice" aria-live="polite"></span></div>
+    <div class="modern-progress" id="modernProgress" hidden><progress id="modernProgressBar" value="0" max="1"></progress><span id="modernProgressText"></span></div>
+    <details class="modern-stage" open><summary data-modern-i18n="stageModel">A. Language model and attack contract</summary><div class="modern-stage-body" id="modernModelStage"></div></details>
+    <details class="modern-stage"><summary data-modern-i18n="stageEmpty">B. Empty plugboard: IC prefilter</summary><div class="modern-stage-body" id="modernEmptyStage"></div></details>
+    <details class="modern-stage"><summary data-modern-i18n="stageRounds">C. Five plugboard-search rounds</summary><div class="modern-stage-body" id="modernRoundsStage"></div></details>
+    <details class="modern-stage"><summary data-modern-i18n="stageFinal">D. Final machine state and decryption</summary><div class="modern-stage-body" id="modernFinalStage"></div></details>
+  </section>
+  <section class="panel attack" id="bombePanel" role="tabpanel" aria-labelledby="bombeTab" hidden>
+    <h2 data-bombe-i18n="title">The Bombe: finding a plausible machine state from a crib</h2>
+    <p class="attack-intro" data-bombe-i18n="intro">Start with a guessed plaintext fragment (a crib), not its position. The program slides it across the ciphertext, keeps only positions that can be Enigma-valid, then tests rotor windows and plugboard consequences.</p>
+    <div class="attack-grid">
+      <div><h3 data-bombe-i18n="cipherTitle">Ciphertext under attack</h3><p class="ciphertext-box" id="bombeCiphertext"></p></div>
+      <div class="attack-field"><label for="bombeCrib" data-bombe-i18n="cribLabel">Guessed plaintext fragment (crib)</label><input id="bombeCrib" value="THE OLD MILL" maxlength="80"><p class="attack-note" data-bombe-i18n="dragNote">Example: “THE OLD MILL”. Its position is deliberately unknown. The program tries it at every possible ciphertext character position, rejects any position where a letter would encrypt to itself, and only then investigates positions whose letter-pair graph contains a loop.</p><label for="bombeModelFile" data-bombe-i18n="bombeModelLabel">Language-score model</label><a id="bombeModelDefaultLink" target="_blank" rel="noopener" data-bombe-i18n="bombeModelLink">Download the default English quadgram model</a><input class="model-file" id="bombeModelFile" type="file" accept=".txt,text/plain"><small data-bombe-i18n="bombeModelHint">Optional: choose a compatible `ABCD 123` quadgram file. It overrides the default for this Bombe run.</small></div>
+    </div>
+    <div class="modern-actions"><button class="primary" id="runSoftwareBombe" type="button" data-bombe-i18n="run">1. Drag crib; 2. test all loop menus</button><span class="notice" id="bombeNotice" aria-live="polite"></span></div>
+    <div class="modern-progress" id="bombeProgress" hidden><progress id="bombeProgressBar" value="0" max="26"></progress><span id="bombeProgressText"></span></div>
+    <details class="modern-stage" open><summary data-bombe-i18n="stageMenu">A. Find possible crib positions and loop menus</summary><div class="modern-stage-body" id="bombeMenuStage"></div></details>
+    <details class="modern-stage"><summary data-bombe-i18n="stageExcluded">B. Test every complete loop hypothesis and eliminate contradictions</summary><div class="modern-stage-body" id="bombeExcludedStage"></div></details>
+    <details class="modern-stage"><summary id="bombeStopsSummary" data-bombe-i18n="stageStops">C. Keep internally consistent stops</summary><div class="modern-stage-body" id="bombeStopsStage"></div></details>
+    <details class="modern-stage"><summary data-bombe-i18n="stageBest">D. Rank the surviving stops by English likelihood</summary><div class="modern-stage-body" id="bombeBestStage"></div></details>
+    <details class="modern-stage"><summary data-bombe-i18n="stageRefinement">E. Word-clue refinement after the language check</summary><div class="modern-stage-body" id="bombeRefinementStage"></div></details>
+  </section>
   <section class="panel principles" id="principlesPanel" role="tabpanel" aria-labelledby="principlesTab" hidden>
     <h2 data-principle="title">How the three components work</h2>
     <p class="principles-intro" data-principle="intro">This single-rotor demonstrator separates permanent wiring from the contact engaged at the current rotor position.</p>
@@ -158,8 +191,22 @@
       <article class="principle-card"><h3 data-principle="plugTitle">Plugboard</h3><p data-principle="plugText">The plugboard is a fixed, bidirectional set of letter swaps. A cable A–M makes A become M and M become A; an unconnected letter stays itself. The signal passes through it on both the outward and return paths.</p></article>
       <article class="principle-card"><h3 data-principle="rotorTitle">Rotor</h3><p data-principle="rotorText">A rotor contains 26 permanent internal wires linking one contact face to the other. Stepping rotates the entire rotor, so the current engaged contact changes, but its internal wiring table never changes. The return path uses the same wires in reverse.</p></article>
       <article class="principle-card"><h3 data-principle="reflectorTitle">Reflector</h3><p data-principle="reflectorText">The reflector is fixed and does not step. Its 26 contacts are wired in pairs, sending the signal back through the rotor. This makes the same configuration usable for encryption and decryption.</p></article>
+      <article class="principle-card"><h3 data-principle="windowTitle">Window, stepping, and the engaged contact</h3><p data-principle="windowText">The window letter is a position marker, not a new rotor wiring table. In this app, each A–Z character steps the rotor before it is processed; a space or punctuation mark does not. Stepping changes which fixed-frame letter meets which rotor contact, while the permanent rotor wires remain unchanged.</p></article>
+      <article class="principle-card"><h3 data-principle="propertiesTitle">Two Enigma properties</h3><p data-principle="propertiesText">With the same initial window, stepping rule, plugboard, rotor, and reflector, the same path decrypts what it encrypts. Standard Enigma also never sends a letter to itself. That rule immediately rejects a crib alignment containing the same plaintext and ciphertext letter at one position.</p></article>
+      <article class="principle-card"><h3 data-principle="modernTitle">Modern ciphertext-only attack</h3><p data-principle="modernText">A modern attack can avoid a crib: decrypt under each rotor state with an empty plugboard, rank the outputs by the Index of Coincidence (IC), then optimize the fixed plugboard with n-gram language scores. IC is only a prefilter; readable text and the final n-gram score decide the candidate.</p></article>
+      <article class="principle-card"><h3 data-principle="bombeTitle">Bombe terms: crib, menu, loop, and stop</h3><p data-principle="bombeText">A crib is a guessed plaintext fragment. Standard Enigma cannot encipher a letter as itself, so an alignment with any identical plaintext/ciphertext letter is impossible. A menu is the graph made by linking each crib letter to the ciphertext letter below it; a loop is a closed route in that graph. For example, THEOLDMILL over DYZHATNHPT contains T–D and D–T, giving the loop T–D–T. A stop is a rotor setting and plugboard hypothesis that produces no contradiction in this menu; it is a candidate for checking, not a complete recovered key.</p></article>
+      <article class="principle-card"><h3 data-principle="candidateTitle">Provisional text, language check, and word clues</h3><p data-principle="candidateText">A provisional text applies the plugboard facts already inferred, while letters still unknown are temporarily left unchanged. It is therefore a preview, not a final decryption. In D, a four-letter English-frequency model ranks these previews. In E, recognizable word clues are tested one at a time to infer further plugboard facts; an exact word and an “≈” near word are clues, not confirmation.</p></article>
+      <article class="principle-card"><h3 data-principle="scopeTitle">Scope of this demonstrator</h3><p data-principle="scopeText">This app uses one stepping rotor, reflector B, and a limited plugboard to make the signal path and constraint logic visible. Its Bombe tab is a software menu-constraint demonstration. It does not reproduce the historical multi-rotor machines, full daily-key recovery procedure, or Bombe hardware. The D and E language steps are modern teaching aids added by this app.</p></article>
     </div>
     <div class="principle-flow" data-principle="flow">Keyboard → plugboard → engaged rotor contact → fixed rotor wire → reflector → reverse rotor wire → plugboard → lampboard</div>
+    <section class="principle-sources" aria-label="Further reading">
+      <h3 data-principle="sourcesTitle">Further reading</h3>
+      <ul>
+        <li><a href="https://www.ciphermachinesandcryptology.com/index.htm" target="_blank" rel="noopener">Cipher Machines &amp; Cryptology</a> — <span data-principle="cipherMachinesSource">historical cipher-machine reference</span></li>
+        <li><a href="https://github.com/gchq/CyberChef/wiki/Enigma,-the-Bombe,-and-Typex" target="_blank" rel="noopener">GCHQ CyberChef: Enigma, the Bombe, and Typex</a> — <span data-principle="cyberChefSource">practical Enigma, Bombe, and Typex guide</span></li>
+        <li><a href="https://www.youtube.com/watch?v=ybkkiGtJmkM" target="_blank" rel="noopener">YouTube: Enigma and the Bombe</a> — <span data-principle="youtubeSource">video explanation of Enigma/Bombe principles</span></li>
+      </ul>
+    </section>
   </section>
 </main>
 <script>
@@ -172,20 +219,106 @@
       en: {
         tabMachine:'Machine', tabPrinciples:'Principles', title:'How the three components work',
         intro:'This single-rotor demonstrator separates permanent wiring from the contact engaged at the current rotor position.',
-        plugTitle:'Plugboard', plugText:'The plugboard is a fixed, bidirectional set of letter swaps. A cable A–M makes A become M and M become A; an unconnected letter stays itself. The signal passes through it on both the outward and return paths.',
+        plugTitle:'Plugboard', plugText:'The plugboard is a fixed, bidirectional set of letter swaps. A cable A–M makes A become M and M become A. A letter can be in at most one cable; an unconnected letter has the self-mapping A→A. The signal passes through the same plugboard on both the outward and return paths.',
         rotorTitle:'Rotor', rotorText:'A rotor contains 26 permanent internal wires linking one contact face to the other. Stepping rotates the entire rotor, so the current engaged contact changes, but its internal wiring table never changes. The return path uses the same wires in reverse.',
-        reflectorTitle:'Reflector', reflectorText:'The reflector is fixed and does not step. Its 26 contacts are wired in pairs, sending the signal back through the rotor. This makes the same configuration usable for encryption and decryption.',
-        flow:'Keyboard → plugboard → engaged rotor contact → fixed rotor wire → reflector → reverse rotor wire → plugboard → lampboard'
+        reflectorTitle:'Reflector', reflectorText:'The reflector is fixed and does not step. Its 26 contacts are wired in pairs, never to themselves, sending the signal back through the rotor. This makes the same configuration usable for encryption and decryption.',
+        windowTitle:'Window, stepping, and the engaged contact', windowText:'The window letter is a position marker, not a new rotor wiring table. In this app, each A–Z character steps the rotor before it is processed; a space or punctuation mark does not. Stepping changes which fixed-frame letter meets which rotor contact, while the permanent rotor wires remain unchanged.',
+        propertiesTitle:'Two Enigma properties', propertiesText:'With the same initial window, stepping rule, plugboard, rotor, and reflector, the same path decrypts what it encrypts. Standard Enigma also never sends a letter to itself. That rule immediately rejects a crib alignment containing the same plaintext and ciphertext letter at one position.',
+        modernTitle:'Modern ciphertext-only attack', modernText:'A modern attack can avoid a crib: decrypt under each rotor state with an empty plugboard, rank the outputs by the Index of Coincidence (IC), then optimize the fixed plugboard with four-letter language scores. IC is only a coarse prefilter; the language score ranks the remaining candidates and does not confirm a key.',
+        candidateTitle:'Provisional text, language check, and word clues', candidateText:'A provisional text applies the plugboard facts already inferred, while letters still unknown are temporarily left unchanged. It is therefore a preview, not a final decryption. In D, a four-letter English-frequency model ranks these previews. In E, recognizable word clues are tested one at a time to infer further plugboard facts; an exact word and an “≈” near word are clues, not confirmation.',
+        scopeTitle:'Scope of this demonstrator', scopeText:'This app uses one stepping rotor, reflector B, and a limited plugboard to make the signal path and constraint logic visible. Its Bombe tab is a software menu-constraint demonstration. It does not reproduce the historical multi-rotor machines, full daily-key recovery procedure, or Bombe hardware. The D and E language steps are modern teaching aids added by this app.',
+        flow:'Keyboard → plugboard → engaged rotor contact → fixed rotor wire → reflector → reverse rotor wire → plugboard → lampboard',
+        sourcesTitle:'Further reading', cipherMachinesSource:'historical cipher-machine reference', cyberChefSource:'practical Enigma, Bombe, and Typex guide', youtubeSource:'video explanation of Enigma/Bombe principles'
       },
       zh: {
         tabMachine:'机器', tabPrinciples:'原理说明', title:'插线板、转子与反射器的原理',
         intro:'本单转子演示器严格区分永久固定的内部接线，以及当前窗口位置下实际咬合的接点。',
-        plugTitle:'插线板', plugText:'插线板是一组固定的双向字母交换。接入 A–M 的电缆后，A 变为 M、M 变为 A；未接线字母保持不变。信号去程和回程都会经过同一张插线表。',
+        plugTitle:'插线板', plugText:'插线板是一组固定的双向字母交换。接入 A–M 的电缆后，A 变为 M、M 变为 A。一个字母最多参与一根电缆；未接线字母具有自身映射，例如 A→A。信号去程和回程都会经过同一张插线表。',
         rotorTitle:'转子', rotorText:'一个转子有 26 根永久固定的内部导线，连接两侧接点。步进会使整个转子旋转，改变当前咬合的是哪个接点；但内部接线表永远不改变。回程沿同一组导线反向通过。',
-        reflectorTitle:'反射器', reflectorText:'反射器固定且不步进。它的 26 个接点两两接线，将信号折返到转子。正因如此，同一套设置既可加密，也可解密。',
-        flow:'键盘 → 插线板 → 当前咬合的转子接点 → 转子固定导线 → 反射器 → 转子反向导线 → 插线板 → 灯板'
+        reflectorTitle:'反射器', reflectorText:'反射器固定且不步进。它的 26 个接点两两接线，且不与自身相连，将信号折返到转子。正因如此，同一套设置既可加密，也可解密。',
+        windowTitle:'窗口、步进与当前咬合', windowText:'窗口字母只是位置标记，不是一张新的转子接线表。本 App 中每个 A–Z 字符在处理前会令转子步进一步；空格和标点不会步进。步进只改变机架字母与转子接点如何咬合，永久内部导线并不改变。',
+        propertiesTitle:'恩尼格码的两个基本性质', propertiesText:'初始窗口、步进规则、插线板、转子和反射器完全相同时，同一条路径既可解密也可加密。标准恩尼格码还不会把字母加密成自身；因此只要某个 crib 对齐位置的明文与密文字母相同，该位置立刻排除。',
+        modernTitle:'现代密文破解', modernText:'现代攻击可以不使用 crib：先在每个转子状态下用空插线板解密，按重合指数（IC）给输出排序，再以连续四字母语言分数优化固定插线板。IC 只是粗筛；语言分数只给剩余候选排序，不能确认密钥。',
+        candidateTitle:'临时解密、语言检查与实词线索', candidateText:'临时解密会应用已经推出的插线板事实；仍未知的字母暂按自身不变处理，因此它只是预览，不是最终解密。D 阶段用英语连续四字母频率模型给这些预览排序。E 阶段把可识别的实词逐个测试，以推出更多插线板事实；精确词和“≈”近似词都只是线索，不能据此确认。',
+        scopeTitle:'本演示器的范围', scopeText:'本 App 使用一个会步进的转子、反射器 B 与有限插线板，使信号路径和约束逻辑可见。Bombe 标签页是软件 menu 约束演示；它不复现历史多转子机器、完整的每日密钥恢复流程或 Bombe 硬件。D、E 的语言步骤是本 App 额外加入的现代教学辅助。',
+        flow:'键盘 → 插线板 → 当前咬合的转子接点 → 转子固定导线 → 反射器 → 转子反向导线 → 插线板 → 灯板',
+        sourcesTitle:'延伸阅读', cipherMachinesSource:'密码机历史资料', cyberChefSource:'Enigma、Bombe 与 Typex 的实践指南', youtubeSource:'Enigma/Bombe 原理视频说明'
       }
     };
+    Object.assign(PRINCIPLES.en, {
+      bombeTitle:'Bombe terms: crib, menu, loop, and stop',
+      bombeText:'A crib is a guessed plaintext fragment. Standard Enigma cannot encipher a letter as itself, so an alignment with any identical plaintext/ciphertext letter is impossible. A menu is the graph made by linking each crib letter to the ciphertext letter below it; a loop is a closed route in that graph. Example: THEOLDMILL over DYZHATNHPT contains T–D and D–T, giving the closed route T–D–T. A stop is a rotor setting and plugboard hypothesis that produces no contradiction in this menu; it is a candidate to check, not a complete recovered key. This page is a software constraint demonstration, not a physical reproduction of every Bombe circuit.'
+    });
+    Object.assign(PRINCIPLES.zh, {
+      bombeTitle:'Bombe 术语：crib、menu、loop 与 stop',
+      bombeText:'crib 是一段猜测的明文。标准恩尼格码不会把一个字母加密为它自己；因此只要某个对齐位置出现明文字母与密文字母相同，该位置立刻不可能。menu 是把 crib 的每个字母与其下方密文字母连起来得到的图；loop 是图中回到起点的闭合路径。例：THEOLDMILL 与 DYZHATNHPT 对齐时，既有 T–D，又有 D–T，因此形成 T–D–T 的闭环。stop 是某个转子初始窗口和插线板假设在这张 menu 中没有产生矛盾；它只是值得继续核验的候选，不是已经恢复的完整密钥。本页是软件约束演示，不是把历史 Bombe 的全部电路逐一复刻。'
+    });
+    const MODERN_I18N = {
+      en: { tab:'Modern Crack', title:'Modern ciphertext-only crack', intro:'No crib is used. The fixed demonstrator ciphertext is attacked under the known simplified machine model: one rotor, stepping enabled, and a chosen number of plugboard pairs.', cipherTitle:'Ciphertext under attack', modelTitle:'Language model', modelNote:'Load an English quadgram file. The default public table is 3.14 MB; you may upload a compatible custom model instead.', modelLink:'Default English quadgram download', modelFormat:'Format: one `ABCD 123` count per line.', leadCount:'Plugboard pairs to enumerate', run:'Load model and run crack', loading:'Loading language model…', running:'Testing rotor window {done}/26…', failed:'Could not load the language model. Download it and choose the file manually.', stageModel:'A. Language model and attack contract', stageEmpty:'B. Empty plugboard: IC prefilter', stageRounds:'C. Plugboard-search rounds', stageFinal:'D. Final machine state and decryption', contract:'Attack model: one Rotor I, reflector B, stepping enabled, and {leads} bidirectional plugboard pairs. Input: ciphertext only; no crib or target plaintext is supplied.', modelReady:'Loaded {count} quadgrams. Unknown quadgrams receive a small floor score.', icExplain:'IC (Index of Coincidence) is the probability that two letters sampled from a candidate text match: IC = Σ nᵢ(nᵢ−1) / N(N−1). A uniform random A–Z string is about 1/26 = 0.0385; natural-language remnants often score higher. Here IC ranks empty-plugboard outputs only—it does not prove a key.', emptyBest:'Best empty-plugboard window: {window}; IC: {ic}. This is only a partially decrypted candidate.', chartTitle:'Quadgram-score trajectory for the final rotor-window candidate', chartAxis:'Quadgram log10 score (higher is better)', chartStage:'{count} pair(s)', round:'Round {round}: enumerate every unused letter pair, retain the highest quadgram score.', pair:'Selected pair', score:'Quadgram score', final:'Best result after {leads} rounds', window:'Initial rotor window', plugboard:'Plugboard', plaintext:'Decryption', elapsed:'Elapsed', seconds:'s' },
+      zh: { tab:'现代破解', title:'现代密文破解', intro:'不使用 crib。此页面在已知的简化机型约束下攻击固定示例密文：一个转子、开启步进，以及用户选择的插线对数量。', cipherTitle:'待攻击密文', modelTitle:'语言模型', modelNote:'加载英语四元组频率文件。默认公开表约 3.14 MB；也可以上传兼容的自定义模型。', modelLink:'默认英语四元组模型下载', modelFormat:'格式：每行一个 `ABCD 123` 计数。', leadCount:'枚举的插线对数量', run:'加载模型并执行破解', loading:'正在加载语言模型…', running:'正在测试转子窗口 {done}/26…', failed:'语言模型加载失败。请下载后通过文件选择器手动上传。', stageModel:'A. 语言模型与攻击约束', stageEmpty:'B. 空插线板：IC 预筛选', stageRounds:'C. 插线板搜索轮次', stageFinal:'D. 最终机器状态与解密结果', contract:'攻击模型：Rotor I、反射器 B、逐字步进，以及 {leads} 对双向插线。输入只有密文；没有提供 crib 或目标明文。', modelReady:'已加载 {count} 个四元组。未出现的四元组采用很小的下限分数。', icExplain:'IC（重合指数）是从候选文本随机抽取两个字母、它们相同的概率：IC = Σ nᵢ(nᵢ−1) / N(N−1)。均匀随机 A–Z 串约为 1/26 = 0.0385；含自然语言残余的输出通常更高。这里 IC 只给空插线板输出排序，不能据此确认密钥正确。', emptyBest:'空插线板下最佳窗口：{window}；IC：{ic}。这只是部分解密候选。', chartTitle:'最终转子窗口候选下的四元组分数轨迹', chartAxis:'四元组 log10 分数（越高越好）', chartStage:'{count} 对插线', round:'第 {round} 轮：穷举所有尚未使用字母的配对，保留四元组分数最高者。', pair:'选中接线', score:'四元组分数', final:'{leads} 轮后的最优结果', window:'初始转子窗口', plugboard:'插线板', plaintext:'解密文', elapsed:'耗时', seconds:'秒' }
+    };
+    const BOMBE_PAGE_I18N = {
+      en: { tab:'The Bombe', title:'The Bombe: finding a plausible machine state from a crib', intro:'Start with a guessed plaintext fragment (a crib), not its position. The program slides it across the ciphertext, keeps only positions that can be Enigma-valid, then tests rotor windows and plugboard consequences. A “stop” is a hypothesis with no internal plugboard contradiction—not yet a proven key.', cipherTitle:'Ciphertext under attack', cribLabel:'Guessed plaintext fragment (crib)', dragNote:'Example: “THE OLD MILL”. Its position is deliberately unknown. The program tries it at every possible ciphertext character position, rejects any position where a letter would encrypt to itself, and only then investigates positions whose letter-pair graph contains a loop.', run:'1. Drag crib; 2. test all loop menus', running:'Menu {candidate} of {total}; initial window {window}; {done}/26 windows complete ({perWindow} complete hypotheses per window)…', invalid:'Enter at least two A–Z letters for the crib.', noLoop:'No legal crib position produced a loop. Try a longer or different crib.', menu:'Crib starts at ciphertext character {offset} (counting from 1): {crib} ↔ {cipher}. The graph has {loops} independent loop(s). Loop-component entry letter(s): {anchors}.', model:'For each initial rotor window, the program tries every A–Z partner combination for the loop-component entry letters {anchors}: {perWindow} complete hypotheses per window. It propagates the complete menu and rejects a hypothesis only when a letter is forced to have two different plugboard partners.', stageMenu:'A. Find possible crib positions and loop menus', stageExcluded:'B. Test every complete loop hypothesis and eliminate contradictions', stageStops:'C. Keep internally consistent stops', stageBest:'D. Rank the surviving stops by English likelihood', menuStageNote:'A menu is the graph formed by connecting each crib letter to the ciphertext letter underneath it. A loop lets a plugboard assumption return to itself, making contradictions visible. For each disconnected loop-bearing component, the program chooses one deterministic entry letter on that component’s loop; this is only an entry point, not a special key letter. A does not reject candidates: it only constructs the list to be tested in B.', exclusionStageNote:'B is where every candidate is actually tested. For each initial rotor window, it tests every possible partner combination for all loop-component entry letters. The exact total is shown for each position; it is 26 windows × 26 raised to the number of disconnected loop-bearing components. A candidate with zero stops appears here because B is precisely the step that establishes zero surviving hypotheses.', stopsStageNote:'A surviving stop means the complete loop menu did not force an impossible plugboard mapping. It gives only the constraints implied by this crib; letters not reached by the menu remain unknown. The provisional text below treats those unknown letters as unconnected solely to make candidates comparable.', bestStageNote:'The language score ranks the provisional decryptions, so the highest result is the best lead for this demonstration. It is not a recovered complete key.', alignmentSummary:'{legal} positions pass Enigma’s no-self-encryption rule; {menus} of those positions contain at least one loop.', notice:'{menus} loop menus examined · {stops} internally consistent stops', candidateMenu:'Crib start {offset} · {loops} loop(s) · loop entries {anchors}', candidateMenuWithStops:'Crib start {offset} · {loops} loop(s) · loop entries {anchors} · {stops} stops survive', candidateExcluded:'Crib start {offset} · {rejected} contradictions in {trials} complete hypotheses · {stops} stops survive', candidateStops:'Crib start {offset} · {stops} internally consistent stops', rejected:'Initial window {window}: {count} contradictions in {trials} complete hypotheses. First contradiction: {example}', stop:'Initial window {window}; loop-entry assumptions {seeds}; inferred plugboard constraints: {pairs}; English quadgram score: {score}', partial:'Provisional decryption: unknown plugboard letters are temporarily left unconnected (identity), so this is not a complete decryption.', best:'Best-ranked surviving stop', finalOffset:'Crib starts at ciphertext character (1-based)', finalWindow:'Initial rotor window before the first ciphertext letter', finalSeed:'Loop-entry assumptions', finalPairs:'Plugboard constraints inferred from this crib', finalScore:'English quadgram score of the provisional text', resultNote:'Use this result as a lead: it identifies one promising crib position and machine state. Confirm or complete the remaining plugboard with more ciphertext, another crib, or operational context.', modelFailed:'Could not load the language model; results are shown without language ranking.' },
+      zh: { tab:'The Bombe', title:'The Bombe：由 crib 寻找最可能的机器状态', intro:'从一段猜测的明文片段（crib）开始，而不是从它的位置开始。程序会把它逐位拖过密文，只保留符合恩尼格码基本规则的位置，然后测试转子窗口和由此推出的插线板约束。这里的“stop”只表示内部没有插线矛盾，并不等于已经找到了完整密钥。', cipherTitle:'待攻击密文', cribLabel:'猜测的明文片段（crib）', dragNote:'例如 “THE OLD MILL”。程序并不知道它在密文中的位置：会逐个尝试所有起始位置，先排除任何“同一字母加密为自身”的位置；再只研究字母配对图中含环的位置。', run:'1. 拖动 crib；2. 测试全部有环 menu', running:'第 {candidate}/{total} 个 menu；初始窗口 {window}；本 menu 已完成 {done}/26 个窗口（每窗口 {perWindow} 个完整假设）…', invalid:'crib 至少需要两个 A–Z 字母。', noLoop:'没有合法 crib 位置形成环。请尝试更长或不同的 crib。', menu:'crib 从密文第 {offset} 个字符开始（从 1 计数）：{crib} ↔ {cipher}。该图有 {loops} 个独立环；各有环连通分量的入口字母为：{anchors}。', model:'对每一个初始转子窗口，程序会枚举入口字母 {anchors} 的全部 A–Z 伙伴组合：每个窗口 {perWindow} 个完整假设。然后传播整张 menu；只有当同一字母被迫连接到两个不同的插线伙伴时，才排除该假设。', stageMenu:'A. 找出可能的 crib 位置与有环 menu', stageExcluded:'B. 测试全部完整环假设，并排除矛盾', stageStops:'C. 保留内部自洽的 stop', stageBest:'D. 按英文可能性给存活 stop 排序', menuStageNote:'menu 是将 crib 的每个字母与其下方密文字母相连得到的图。环能让插线板假设回到自身，因此可以发现矛盾。每个彼此不连通、且含环的分量会选择一个确实位于环上的确定性入口字母；它只是开始传播约束的入口，不是特殊的密钥字母。A 阶段并不排除候选，只负责生成 B 阶段要检验的候选。', exclusionStageNote:'B 才是实际检验每个候选的位置。对每一个初始转子窗口，会测试所有有环连通分量入口字母的伙伴组合。每个位置的准确假设总数会直接显示：26 个窗口 × 26 的“有环连通分量数”次方。某位置显示 0 个 stop，正是因为 B 已经完成了它的全部检验，而不是 A 预先将它排除了。', stopsStageNote:'存活 stop 表示完整的有环 menu 没有推出机械上不可能的插线板映射。它只给出这个 crib 能约束到的插线；menu 未触及的字母仍未知。为便于比较，下面的临时解密把未知字母视为未插线；这不是完整解密文。', bestStageNote:'语言分数只是在这些临时解密中寻找最像英文的一项，因此最高分是本演示的最佳线索，不是完整密钥已经被证明。', alignmentSummary:'共有 {legal} 个位置通过“不得自加密”规则；其中 {menus} 个位置至少含一个环。', notice:'已检查 {menus} 个有环 menu · 得到 {stops} 个内部自洽的 stop', candidateMenu:'crib 起点 {offset} · {loops} 个环 · 环入口 {anchors}', candidateMenuWithStops:'crib 起点 {offset} · {loops} 个环 · 环入口 {anchors} · 存活 {stops} 个 stop', candidateExcluded:'crib 起点 {offset} · 共 {trials} 个完整假设，其中 {rejected} 个矛盾 · 存活 {stops} 个 stop', candidateStops:'crib 起点 {offset} · {stops} 个内部自洽的 stop', rejected:'初始窗口 {window}：{trials} 个完整假设中有 {count} 个矛盾。首个矛盾：{example}', stop:'初始窗口 {window}；环入口假定 {seeds}；由 menu 推出的插线约束：{pairs}；英文四元组分数：{score}', partial:'临时解密：未知的插线字母暂按“未插线（自身不变）”处理，故这不是完整解密文。', best:'语言分数最高的存活 stop', finalOffset:'crib 在密文中的起点（从 1 计数）', finalWindow:'第一封密文字母加密前的初始转子窗口', finalSeed:'环入口假设', finalPairs:'由这个 crib 推导出的插线板约束', finalScore:'临时解密文的英文四元组分数', resultNote:'把这个结果作为线索：它给出一个最有希望的 crib 位置与机器状态。仍需使用更多密文、另一个 crib 或报文上下文来确认并补全其余插线。', modelFailed:'语言模型无法加载；结果将不按语言分数排序。' }
+    };
+    Object.assign(BOMBE_PAGE_I18N.en, {
+      cribLabel:'Crib: guessed plaintext supplied by an expert',
+      dragNote:'Expert input: enter a plausible phrase suggested by language, message conventions, place names, or operational context. Example: “THE OLD MILL”. Its position is deliberately unknown. The program tries it at every possible ciphertext position, rejects any position where a letter would encrypt to itself, and then investigates positions whose letter-pair graph contains a loop.',
+      stageMenu:'A. Expert input: propose a crib; find its possible positions and loop menus',
+      stageBest:'D. Modern language-model ranking of provisional texts',
+      stageRefinement:'E. Word-clue refinement after the language check',
+      menu:'Crib starts at ciphertext character {offset} (counting from 1): {crib} ↔ {cipher}. The graph has {loops} independent loop(s).',
+      menuStageNote:'A needs help from a linguist or intelligence analyst: they supply a plausible crib, such as a routine phrase, place name, or expected report wording. The program then builds the candidates for later testing. It slides that crib across the ciphertext, removes positions that violate Enigma’s no-self-encryption rule, and keeps positions whose letter-pair graph contains a loop. No rotor window or plugboard hypothesis is tested in this stage.',
+      candidateMenuWithStops:'Crib start {offset} · {loops} loop(s)',
+      candidateExcluded:'Crib start {offset}: all {trials} complete hypotheses have been tested — {rejected} contradict; {stops} stops remain',
+      candidateExcludedNone:'Crib start {offset}: all {trials} complete hypotheses contradict — no stop remains',
+      rejected:'Initial window {window}: {count} of {trials} complete hypotheses contradict. One example: {example}',
+      previousCribFact:'Crib pair #{index} ({plain} ↔ {cipher}) first gives P({letter})={current}.',
+      previousSeedFact:'The starting assumption first gives P({letter})={current}.',
+      menuConflictTrace:'Under {seeds}: {firstFact} Later, crib pair #{index} ({plain} ↔ {cipher}) requires P({letter})={required}. One letter cannot have two plugboard partners, so this hypothesis is rejected.',
+      seedConflict:'The combined entry assumptions {seeds} conflict directly: P({letter}) is already {current}, not {required}.',
+      exclusionStageNote:'B answers one question for each crib position: can any initial rotor window and plugboard assumption satisfy every loop? First, choose an initial rotor window (A through Z). Next, try every possible partner for one entry letter in each separate loop group. With the usual one loop group, that is 26 windows × 26 possible partners = 676 checks. If a position has two separate loop groups, both partners must be tried together, so there are 26 × 26 × 26 checks. A result of zero stops means every check for that position produced a contradiction.',
+      stageStops:'C. Candidates with no contradiction (stops)',
+      stopsStageNote:'This section lists the candidates that did not create a contradiction in B. They are leads, not proven keys. The crib can determine only some plugboard connections; the other letters are still unknown. To make the candidates easy to compare, the preview below temporarily leaves every unknown letter unchanged. So the preview is not the final plaintext.',
+      noStopsStage:'No candidate survived B. Try a different or longer crib.',
+      stageStopsCount:'C. Candidates with no contradiction (stops) — {candidates} positions; {stops} provisional texts to score and review',
+      stopsCountNote:'B leaves {stops} provisional texts from {candidates} crib positions for language scoring and human review.',
+      bestStageNote:'Historically, people had to read the candidate provisional texts and decide which ones looked meaningful. This app replaces that first sorting task with a language-statistics model. It does not send anything to an expert; it shows the ranked texts to the current user.',
+      scoreStageNote:'The model compares each provisional text’s four-letter groups with an English frequency table. Familiar groups such as “TION” score higher than rare groups, so more English-like texts appear first. The score is only a sorting aid for the texts shown here. It does not prove that any text is correct.',
+      scoreUnavailable:'The language model was unavailable, so this result is not ranked by English score.',
+      bombeModelLabel:'Language-score model for this Bombe run', bombeModelLink:'Download the default English quadgram model', bombeModelHint:'Optional: choose a compatible `ABCD 123` quadgram file. It overrides the default for this Bombe run.',
+      finalModel:'Language model used', contentWords:'Recognized possible English words', contentWordsNote:'The app compares the text with its built-in list of common English message words. A normal entry is an exact match. “≈” means the displayed letters differ from a listed word by one letter or by one adjacent-letter swap. This is only a clue; it cannot confirm the word or the key.', contentWordsNone:'No word from the app’s built-in common-message-word list was found in this provisional text.',
+      refinementTitle:'Word-clue refinement after the language check', refinementNote:'The program tests the readable word clues above one at a time. A word is kept only if its letters add plugboard facts without contradicting facts already known.', refinementAccepted:'Word clues that added consistent plugboard facts', refinementNone:'None of the displayed word clues added a new plugboard fact.', refinementAdds:'new facts', refinementForward:'Crib pair #{index} ({plain} → {cipher}): {plain} is already plugged to {known}. At this character position, the rotor-and-reflector path maps {known} → {core}. Therefore {core} must be plugged to {cipher}.', refinementReverse:'Crib pair #{index} ({plain} → {cipher}): {cipher} is already plugged to {known}. At this character position, the reverse rotor-and-reflector path maps {known} → {core}. Therefore {plain} must be plugged to {core}.', refinementPairs:'Updated inferred plugboard wiring', refinementUnplugged:'Letters inferred to have no cable (self-mapping)', refinementUnpluggedNote:'Each item X→X means the inferred plugboard leaves X unchanged. Open the details to see the constraint that produced it.', refinementUnpluggedDetails:'Show the basis for each self-mapping', refinementFromStop:'Already inferred in C from the original crib “{crib}”.', refinementPartial:'Updated decryption after applying these additional facts', refinementIncomplete:'Some letters remain unknown, so this is still a partial decryption.', refinementComplete:'Every plugboard contact is now determined for this simplified example; the text below is the resulting full decryption.'
+    });
+    Object.assign(BOMBE_PAGE_I18N.zh, {
+      cribLabel:'crib：由专家提出的猜测明文片段',
+      dragNote:'专家输入：请依据语言习惯、通信格式、地名或作战／情报上下文，输入一段可信的猜测短语。例如 “THE OLD MILL”。它的位置刻意未知：程序会逐个尝试密文起点，排除任何“同一字母加密为自身”的位置，再研究字母配对图中含环的位置。',
+      stageMenu:'A. 专家输入：提出 crib；找出可能位置与有环 menu',
+      stageBest:'D. 现代语言模型给临时解密排序',
+      stageRefinement:'E. 语言检查后的实词线索补全',
+      menu:'crib 从密文第 {offset} 个字符开始（从 1 计数）：{crib} ↔ {cipher}。该图有 {loops} 个独立环。',
+      menuStageNote:'A 阶段需要语言学家或情报专家帮助：由人提出可信的 crib，例如常见通信套话、地名或预期的报告措辞。随后程序才构造稍后要检验的候选：将这个 crib 逐位拖过密文，排除违反“不得自加密”规则的位置，保留字母配对图中含环的位置。本阶段不测试任何转子窗口或插线板假设。',
+      candidateMenuWithStops:'crib 起点 {offset} · {loops} 个环',
+      candidateExcluded:'crib 起点 {offset}：已测试全部 {trials} 个完整假设，其中 {rejected} 个矛盾；剩余 {stops} 个 stop',
+      candidateExcludedNone:'crib 起点 {offset}：全部 {trials} 个完整假设都产生矛盾；不保留任何 stop',
+      rejected:'初始窗口 {window}：{trials} 个完整假设中有 {count} 个矛盾。举一个例子：{example}',
+      previousCribFact:'crib 第 {index} 对（{plain} ↔ {cipher}）先推出 P({letter})={current}。',
+      previousSeedFact:'起始假设先给出 P({letter})={current}。',
+      menuConflictTrace:'在假定 {seeds} 时：{firstFact}随后 crib 第 {index} 对（{plain} ↔ {cipher}）又要求 P({letter})={required}。一个字母不可能同时有两个插线伙伴，因此排除这个假设。',
+      seedConflict:'组合入口假定 {seeds} 自身冲突：P({letter}) 已是 {current}，不能再设为 {required}。',
+      exclusionStageNote:'B 阶段要回答每个 crib 位置的一个问题：是否存在某个初始转子窗口和一组插线板假设，能同时满足该位置的全部环？先选择一个初始转子窗口（A 到 Z）；再为每个彼此独立的有环组，尝试其入口字母的全部可能伙伴。通常只有一组环，因此检查数是 26 个窗口 × 26 个可能伙伴 = 676。若某位置有两组彼此独立的环，则必须同时尝试两组伙伴，检查数变为 26 × 26 × 26。某位置得到 0 个 stop，表示它的每一项检查都产生了矛盾。',
+      stageStops:'C. 没有出现矛盾的候选（stop）',
+      stopsStageNote:'这里列出的是在 B 阶段没有出现矛盾的候选。它们只是线索，不能据此确认密钥。这个 crib 只能推出一部分插线板连接；其余字母仍然未知。为了让不同候选的文字便于比较，下面的预览暂时让所有未知字母保持不变。因此它不是最终明文。',
+      noStopsStage:'B 阶段没有留下任何候选。请尝试不同或更长的 crib。',
+      stageStopsCount:'C. 没有出现矛盾的候选（stop）— {candidates} 个位置；{stops} 份 provisional text 等待语言评分和人工复核',
+      stopsCountNote:'B 阶段从 {candidates} 个 crib 位置留下 {stops} 份 provisional text，接下来由语言评分和人工阅读复核。',
+      bestStageNote:'历史上，人必须逐份阅读候选的临时解密，并判断哪些文字看起来有意义。本 App 用语言统计模型替代这第一轮排序工作。它不会把结果“交给专家”；它只把排好序的文字显示给当前用户。',
+      scoreStageNote:'模型把每份临时解密中的连续四字母片段与英语频率表比较。常见片段（如 “TION”）得分高于罕见片段，因此较像英文的文字排在前面。分数只用于排序这里显示的文字，不能据此确认任何一份文字正确。',
+      scoreUnavailable:'语言模型无法使用，因此这里没有按英语分数排序。',
+      bombeModelLabel:'本次 Bombe 运行的语言评分模型', bombeModelLink:'下载默认英语四元组模型', bombeModelHint:'可选：选择兼容的 `ABCD 123` 四元组文件；它会覆盖本次 Bombe 运行的默认模型。',
+      finalModel:'实际使用的语言模型', contentWords:'可能识别出的英文实词', contentWordsNote:'页面会把文字与内置的常见英文通信词表比较。正常显示的是精确匹配。“≈”表示显示出的字母与词表中的词只差一个字母，或仅相邻两个字母颠倒。它只是线索，不能据此确认这个词或密钥。', contentWordsNone:'这份临时解密中没有匹配到页面内置常见英文通信词表中的词。',
+      refinementTitle:'语言检查后的实词线索补全', refinementNote:'程序会把上面可读的词逐个检验。只有当一个词能推出新的插线板事实、且不与既有事实冲突时，才会采用它。', refinementAccepted:'新增且不矛盾的实词线索', refinementNone:'显示出的实词线索没有新增插线板事实。', refinementAdds:'新增事实', refinementForward:'crib 第 #{index} 对（{plain} → {cipher}）：已知 {plain} 插到 {known}。在这个字符位置，转子—反射器路径将 {known} 映射为 {core}。为了得到密文字母 {cipher}，{core} 必须插到 {cipher}。', refinementReverse:'crib 第 #{index} 对（{plain} → {cipher}）：已知 {cipher} 插到 {known}。在这个字符位置，反向转子—反射器路径将 {known} 映射为 {core}。因此 {plain} 必须插到 {core}。', refinementPairs:'更新后推导出的插线板接线', refinementUnplugged:'推导为没有插线的字母（自身映射）', refinementUnpluggedNote:'每一项 X→X 表示推导出的插线板让 X 保持不变。展开后可查看推出它的约束。', refinementUnpluggedDetails:'查看每个自身映射的依据', refinementFromStop:'已由 C 阶段的原始 crib “{crib}” 推出。', refinementPartial:'应用这些新增事实后的更新解密', refinementIncomplete:'仍有字母未知，因此这仍是一份部分解密。', refinementComplete:'在这个简化示例中，所有插线板接点现在都已确定；下方文字就是由此得到的完整解密。'
+    });
     let language = 'en';
     const t = key => I18N[language][key] ?? key;
     function applyLanguage() {
@@ -194,10 +327,28 @@
       document.querySelectorAll('[data-i18n-placeholder]').forEach(node => { node.placeholder = t(node.dataset.i18nPlaceholder); });
       document.querySelector('#languageToggle').textContent = t('languageButton');
       renderPrinciples();
+      renderModernLanguage();
+      renderBombeLanguage();
       const modeLabel = document.querySelector('#rotorLabel'); if (modeLabel) modeLabel.textContent = t(document.querySelector('#stepping').checked ? 'rotorStepOn' : 'rotorStepOff');
-      document.querySelectorAll('.plug-pair input').forEach((input, i) => { input.setAttribute('aria-label', language === 'zh' ? `插线板第${Math.floor(i / 2) + 1}对${i % 2 ? '右' : '左'}侧字母` : `Plugboard pair ${Math.floor(i / 2) + 1}, ${i % 2 ? 'right' : 'left'} letter`); });
+      document.querySelectorAll('.plug-pair input').forEach((input, i) => {
+        const side = i % 2 ? (language === 'zh' ? '右' : 'right') : (language === 'zh' ? '左' : 'left');
+        const pair = Math.floor(i / 2) + 1;
+        input.setAttribute('aria-label', language === 'zh' ? `插线板第${pair}对${side}侧字母` : `Plugboard pair ${pair}, ${side} letter`);
+      });
     }
     function renderPrinciples() { document.querySelectorAll('[data-principle]').forEach(node => { node.textContent = PRINCIPLES[language][node.dataset.principle]; }); }
+    const mt = key => MODERN_I18N[language][key] ?? key;
+    function renderModernLanguage() {
+      document.querySelectorAll('[data-modern-i18n]').forEach(node => { node.textContent = mt(node.dataset.modernI18n); });
+      document.querySelector('#modelDefaultLink').href = MODERN_MODEL_URL;
+      renderModernResults();
+    }
+    const bmt = key => BOMBE_PAGE_I18N[language][key] ?? key;
+    function renderBombeLanguage() {
+      document.querySelectorAll('[data-bombe-i18n]').forEach(node => { node.textContent = bmt(node.dataset.bombeI18n); });
+      document.querySelector('#bombeModelDefaultLink').href = MODERN_MODEL_URL;
+      renderBombeResults();
+    }
     const ABC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const ROTOR = 'EKMFLGDQVZNTOWYHXUSPAIBRCJ'; // Rotor I wiring
     const REFLECTOR = 'YRUHQSLDPXNGOKMIEBFZCWVJAT'; // Reflector B
@@ -210,9 +361,15 @@
     const selectors = {
       rotor: document.querySelector('#rotorSelect'), position: document.querySelector('#rotorPosition'), label: document.querySelector('#rotorLabel'), assembly: document.querySelector('#rotorAssembly'), wheel: document.querySelector('#rotorWheel'), outer: document.querySelector('#rotorOuter'), plugRing: document.querySelector('#plugboardRing'), mapGrid: document.querySelector('#rotorMapGrid'), reflectorWheel: document.querySelector('#reflectorWheel'), reflectorOuter: document.querySelector('#reflectorOuter'), window: document.querySelector('#rotorWindow'), stepping: document.querySelector('#stepping'), keyboardCapture: document.querySelector('#keyboardCapture'),
       route: [...document.querySelectorAll('.route-node')], path: document.querySelector('#pathText'), keyboard: document.querySelector('#keyboard'), lamps: document.querySelector('#lampboard'),
-      plugs: document.querySelector('#plugboard'), plugSignal: document.querySelector('#plugSignal'), notice: document.querySelector('#plugNotice'), input: document.querySelector('#batchInput'), output: document.querySelector('#batchOutput'), frequencyBefore: document.querySelector('#frequencyBefore'), frequencyAfter: document.querySelector('#frequencyAfter'), status: document.querySelector('#batchStatus')
+      plugs: document.querySelector('#plugboard'), plugSignal: document.querySelector('#plugSignal'), notice: document.querySelector('#plugNotice'), input: document.querySelector('#batchInput'), output: document.querySelector('#batchOutput'), frequencyBefore: document.querySelector('#frequencyBefore'), frequencyAfter: document.querySelector('#frequencyAfter'), status: document.querySelector('#batchStatus'),
+      modernCiphertext: document.querySelector('#modernCiphertext'), modernFile: document.querySelector('#modelFile'), modernLeadCount: document.querySelector('#modernLeadCount'), modernRun: document.querySelector('#runModernCrack'), modernNotice: document.querySelector('#modernNotice'), modernProgress: document.querySelector('#modernProgress'), modernProgressBar: document.querySelector('#modernProgressBar'), modernProgressText: document.querySelector('#modernProgressText'), modernModelStage: document.querySelector('#modernModelStage'), modernEmptyStage: document.querySelector('#modernEmptyStage'), modernRoundsStage: document.querySelector('#modernRoundsStage'), modernFinalStage: document.querySelector('#modernFinalStage'),
+      bombeCiphertext: document.querySelector('#bombeCiphertext'), bombeCrib: document.querySelector('#bombeCrib'), bombeModelFile: document.querySelector('#bombeModelFile'), bombeRun: document.querySelector('#runSoftwareBombe'), bombeNotice: document.querySelector('#bombeNotice'), bombeProgress: document.querySelector('#bombeProgress'), bombeProgressBar: document.querySelector('#bombeProgressBar'), bombeProgressText: document.querySelector('#bombeProgressText'), bombeMenuStage: document.querySelector('#bombeMenuStage'), bombeExcludedStage: document.querySelector('#bombeExcludedStage'), bombeStopsSummary: document.querySelector('#bombeStopsSummary'), bombeStopsStage: document.querySelector('#bombeStopsStage'), bombeBestStage: document.querySelector('#bombeBestStage'), bombeRefinementStage: document.querySelector('#bombeRefinementStage')
     };
     ABC.split('').forEach(char => { const option = new Option(char, char); selectors.rotor.add(option); });
+    selectors.rotor.value = 'E';
+    rotorState.position = rotorState.initialPosition = index('E');
+    rotorState.visualAngle = -rotorState.position * ROTOR_STEP_ANGLE;
+    // Six visible lead slots; the default key uses five and leaves the sixth blank.
     const defaultPairs = [['A','M'], ['F','I'], ['N','V'], ['P','S'], ['T','U'], ['', '']];
     const SAMPLE_MESSAGE = 'TO NORTH STAR: WEATHER WINDOW OPENS AT DAWN. MOVE THE FIELD RADIO TO THE OLD MILL AND WAIT FOR THE GREEN LAMP SIGNAL. SUPPLIES ARRIVE BY RIVER AT NINETEEN HUNDRED HOURS. ACKNOWLEDGE WITH THE WORD LANTERN.';
     defaultPairs.forEach(([a,b], i) => selectors.plugs.insertAdjacentHTML('beforeend', `<label class="plug-pair"><input maxlength="1" value="${a}" data-pair="${i}" aria-label="插线板第${i+1}对左侧字母">↔<input maxlength="1" value="${b}" data-pair="${i}" aria-label="插线板第${i+1}对右侧字母"></label>`));
@@ -276,6 +433,325 @@
       const rotorReverse = snapshot.rotor.reverseByRotorContact[reflector.output];
       const plugReverse = Object.freeze({ input: rotorReverse.frameOutput, output: snapshot.plugboard[rotorReverse.frameOutput] });
       return Object.freeze({ input, snapshot, plugForward, rotorForward, reflector, rotorReverse, plugReverse, output: plugReverse.output });
+    }
+    function makeDefaultPlugboard() {
+      const map = Object.fromEntries(ABC.split('').map(char => [char, char]));
+      defaultPairs.forEach(([a, b]) => { if (a && b) { map[a] = b; map[b] = a; } });
+      return Object.freeze(map);
+    }
+    // Analysis uses the same immutable snapshot and trace functions as the machine,
+    // but keeps its own local position so opening/running this tab never changes UI state.
+    function encryptFromInitialPosition(text, initialPosition, plugboard, stepping = true) {
+      let position = initialPosition;
+      return [...text.toUpperCase()].map(char => {
+        if (!ABC.includes(char)) return char;
+        if (stepping) position = (position + 1) % 26;
+        return buildTrace(createMachineSnapshot(position, plugboard), char).output;
+      }).join('');
+    }
+    const DEFAULT_CIPHERTEXT = encryptFromInitialPosition(SAMPLE_MESSAGE, index('E'), makeDefaultPlugboard(), true);
+    function lettersOnly(text) { return text.toUpperCase().replace(/[^A-Z]/g, ''); }
+    const CONTENT_WORDS = Object.freeze(`NORTH STAR WEATHER WINDOW OPENS DAWN MOVE FIELD RADIO OLD MILL WAIT GREEN LAMP SIGNAL SUPPLIES ARRIVE RIVER NINETEEN HUNDRED HOURS ACKNOWLEDGE WORD LANTERN MESSAGE REPORT ATTACK DEFEND COMMAND UNIT TROOPS SHIP PLANE TRAIN BRIDGE ROAD TOWN CITY COAST MOUNTAIN MORNING NIGHT TODAY TOMORROW BEFORE AFTER UNDER OVER BETWEEN WITHOUT RECEIVE SEND CARRY RETURN FOLLOW HOLD POSITION TARGET SECRET ENEMY FRIEND RESCUE MEDICAL FOOD WATER AMMUNITION OFFICER SOLDIER CAPTAIN GENERAL STATION AIRFIELD HARBOR FOREST VALLEY VILLAGE HOUSE CHURCH`.split(' '));
+    function recognizeContentWords(text) {
+      const found = [];
+      [...CONTENT_WORDS].sort((a, b) => b.length - a.length || a.localeCompare(b)).forEach(word => {
+        const exactAt = text.indexOf(word);
+        if (exactAt >= 0) { found.push(Object.freeze({ word, at:exactAt, count:[...text.matchAll(new RegExp(word, 'g'))].length, kind:'exact' })); return; }
+        if (word.length < 5 && word !== 'MILL') return;
+        for (let at = 0; at <= text.length - word.length; at++) {
+          const chunk = text.slice(at, at + word.length), differences = [...word].map((char, i) => char === chunk[i] ? -1 : i).filter(i => i >= 0);
+          const substitution = differences.length === 1;
+          const swap = differences.length === 2 && differences[1] === differences[0] + 1 && word[differences[0]] === chunk[differences[1]] && word[differences[1]] === chunk[differences[0]];
+          if (substitution || swap) { found.push(Object.freeze({ word, at, count:1, kind:'near', seen:chunk })); break; }
+        }
+      });
+      return Object.freeze(found.sort((a, b) => a.at - b.at || a.word.localeCompare(b.word)));
+    }
+    // Modern crack model: independent from the visible machine configuration.
+    // Each run creates one immutable result snapshot; all four collapsible views
+    // render that same snapshot and never re-run the attack calculations.
+    const MODERN_MODEL_URL = 'https://raw.githubusercontent.com/torognes/enigma/refs/heads/master/english_quadgrams.txt';
+    let modernState = Object.freeze({ result:null, modelEntries:0 });
+    const numericLetters = text => [...text].map(char => index(char));
+    const boardForPairs = pairs => {
+      const board = ABC.split('');
+      pairs.forEach(([a,b]) => { board[index(a)] = b; board[index(b)] = a; });
+      return Object.freeze(board);
+    };
+    function coreSchedule(initialPosition, length) {
+      const identity = Object.freeze(Object.fromEntries(ABC.split('').map(char => [char, char])));
+      let position = initialPosition;
+      return Object.freeze(Array.from({ length }, () => {
+        position = (position + 1) % 26;
+        const snapshot = createMachineSnapshot(position, identity);
+        return Object.freeze(ABC.split('').map(char => buildTrace(snapshot, char).output));
+      }));
+    }
+    function decryptWithBoard(cipher, schedule, board) { return cipher.map((value, i) => board[index(schedule[i][index(board[value])])]).join(''); }
+    function icOf(text) { const counts = Object.fromEntries(ABC.split('').map(char => [char, 0])); for (const char of text) counts[char]++; const n = text.length; return Object.values(counts).reduce((sum, count) => sum + count * (count - 1), 0) / (n * (n - 1)); }
+    function quadKey(text, at) { return (((index(text[at]) * 26 + index(text[at + 1])) * 26 + index(text[at + 2])) * 26 + index(text[at + 3])); }
+    function quadScore(text, table, floor) { let score = 0; for (let i = 0; i < text.length - 3; i++) score += table.get(quadKey(text, i)) ?? floor; return score; }
+    function parseQuadgrams(text) {
+      const counts = new Map(); let total = 0;
+      text.split(/\r?\n/).forEach(line => { const match = /^([A-Z]{4})\s+(\d+)$/.exec(line.trim()); if (!match) return; const count = Number(match[2]); counts.set(quadKey(match[1], 0), count); total += count; });
+      if (!counts.size || !total) throw new Error('No quadgrams found');
+      const floor = Math.log10(0.01 / total); return Object.freeze({ table:new Map([...counts].map(([key,count]) => [key, Math.log10(count / total)])), floor, count:counts.size });
+    }
+    async function loadModernModel(file = selectors.modernFile.files?.[0]) {
+      if (file) return Object.freeze({ ...parseQuadgrams(await file.text()), source:Object.freeze({ label:file.name, url:null }) });
+      const response = await fetch(MODERN_MODEL_URL); if (!response.ok) throw new Error('download failed');
+      return Object.freeze({ ...parseQuadgrams(await response.text()), source:Object.freeze({ label:'Default English quadgram model', url:MODERN_MODEL_URL }) });
+    }
+    const formatModernPairs = pairs => pairs.map(([a,b]) => `${a}↔${b}`).join(' ') || '—';
+    const wrapText = text => text.match(/.{1,65}/g)?.join('\n') || '—';
+    async function runModernCrack() {
+      selectors.modernRun.disabled = true; selectors.modernProgress.hidden = false; selectors.modernProgressBar.max = 26; selectors.modernProgressBar.value = 0; selectors.modernNotice.textContent = mt('loading');
+      try {
+        const model = await loadModernModel(), cipher = numericLetters(lettersOnly(DEFAULT_CIPHERTEXT)), leads = Number(selectors.modernLeadCount.value), started = performance.now();
+        const emptyTrials = [], allCandidates = [];
+        for (let initialPosition = 0; initialPosition < 26; initialPosition++) {
+          const schedule = coreSchedule(initialPosition, cipher.length), emptyBoard = boardForPairs([]), emptyText = decryptWithBoard(cipher, schedule, emptyBoard);
+          emptyTrials.push(Object.freeze({ initialPosition, schedule, text:emptyText, ic:icOf(emptyText), score:quadScore(emptyText, model.table, model.floor) }));
+        }
+        const emptyBest = [...emptyTrials].sort((a,b) => b.ic - a.ic)[0];
+        for (let initialPosition = 0; initialPosition < 26; initialPosition++) {
+          const schedule = emptyTrials[initialPosition].schedule; let pairs = Object.freeze([]); const rounds = [];
+          for (let round = 1; round <= leads; round++) {
+            const used = new Set(pairs.flat()); let best = null;
+            for (const left of ABC) if (!used.has(left)) for (const right of ABC) if (right > left && !used.has(right)) {
+              const candidatePairs = Object.freeze([...pairs, Object.freeze([left,right])]); const board = boardForPairs(candidatePairs); const text = decryptWithBoard(cipher, schedule, board); const score = quadScore(text, model.table, model.floor);
+              if (!best || score > best.score) best = Object.freeze({ pairs:candidatePairs, board, text, score });
+            }
+            pairs = best.pairs; rounds.push(Object.freeze({ round, pairs, score:best.score, text:best.text }));
+          }
+          allCandidates.push(Object.freeze({ initialPosition, empty:emptyTrials[initialPosition], rounds:Object.freeze(rounds), final:rounds.at(-1) }));
+          selectors.modernProgressBar.value = initialPosition + 1; selectors.modernProgressText.textContent = mt('running').replace('{done}', initialPosition + 1); await new Promise(resolve => setTimeout(resolve, 0));
+        }
+        const best = [...allCandidates].sort((a,b) => b.final.score - a.final.score)[0];
+        modernState = Object.freeze({ modelEntries:model.count, result:Object.freeze({ emptyBest, best, leads, elapsed:(performance.now() - started) / 1000 }) });
+        selectors.modernNotice.textContent = '';
+      } catch (error) { selectors.modernNotice.textContent = mt('failed'); }
+      finally { selectors.modernRun.disabled = false; selectors.modernProgress.hidden = true; renderModernResults(); }
+    }
+    function renderScoreChart(best) {
+      const points = [{ count:0, score:best.empty.score }, ...best.rounds.map(stage => ({ count:stage.round, score:stage.score }))];
+      const width = 720, height = 330, left = 74, right = 20, top = 30, bottom = 78, plotWidth = width - left - right, plotHeight = height - top - bottom;
+      const rawMin = Math.min(...points.map(point => point.score)), rawMax = Math.max(...points.map(point => point.score));
+      const padding = Math.max(1, (rawMax - rawMin) * .12), min = rawMin - padding, max = rawMax + padding, y = score => top + (max - score) / (max - min) * plotHeight;
+      const baseline = y(min), barWidth = Math.min(58, plotWidth / points.length * .58), x = point => left + plotWidth * (point.count + .5) / points.length;
+      const ticks = Array.from({ length:5 }, (_, i) => min + (max - min) * i / 4);
+      const grid = ticks.map(tick => `<line class="grid" x1="${left}" x2="${width-right}" y1="${y(tick)}" y2="${y(tick)}"/><text class="tick" x="${left-8}" y="${y(tick)+4}" text-anchor="end">${tick.toFixed(1)}</text>`).join('');
+      const bars = points.map((point, i) => { const previous = points[i - 1]?.score; const barY = y(point.score), barHeight = Math.max(1, baseline - barY); return `<rect class="bar ${previous !== undefined && point.score < previous ? 'drop' : ''}" x="${x(point)-barWidth/2}" y="${barY}" width="${barWidth}" height="${barHeight}" rx="3"/><text class="bar-label" x="${x(point)}" y="${baseline+19}" text-anchor="middle">${mt('chartStage').replace('{count}', point.count)}</text>`; }).join('');
+      return `<h3>${mt('chartTitle')}</h3><div class="score-chart-wrap"><svg class="score-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="${mt('chartAxis')}"><text class="axis-label" x="${left}" y="15">${mt('chartAxis')}</text>${grid}<line class="axis" x1="${left}" x2="${width-right}" y1="${baseline}" y2="${baseline}"/><line class="axis" x1="${left}" x2="${left}" y1="${top}" y2="${baseline}"/>${bars}<text class="axis-label" x="${left+plotWidth/2}" y="${height-12}" text-anchor="middle">${mt('leadCount')}</text></svg></div>`;
+    }
+    function renderModernResults() {
+      selectors.modernCiphertext.textContent = lettersOnly(DEFAULT_CIPHERTEXT);
+      if (!modernState.result) {
+        selectors.modernModelStage.textContent = mt('contract').replace('{leads}', selectors.modernLeadCount.value); selectors.modernEmptyStage.innerHTML = `<p>${mt('icExplain')}</p>`; selectors.modernRoundsStage.textContent = '—'; selectors.modernFinalStage.textContent = '—'; return;
+      }
+      const { result, modelEntries } = modernState, { emptyBest, best, leads } = result;
+      selectors.modernModelStage.innerHTML = `<p>${mt('contract').replace('{leads}', leads)}</p><p>${mt('modelReady').replace('{count}', modelEntries.toLocaleString())}</p>`;
+      selectors.modernEmptyStage.innerHTML = `<p>${mt('icExplain')}</p><p>${mt('emptyBest').replace('{window}', letter(emptyBest.initialPosition)).replace('{ic}', emptyBest.ic.toFixed(6))}</p><pre>${wrapText(emptyBest.text)}</pre>`;
+      selectors.modernRoundsStage.innerHTML = `${renderScoreChart(best)}<div class="modern-rounds">${best.rounds.map(stage => `<article class="modern-round"><h4>${mt('round').replace('{round}', stage.round)}</h4><dl class="modern-meta"><dt>${mt('pair')}</dt><dd>${formatModernPairs(stage.pairs)}</dd><dt>${mt('score')}</dt><dd>${stage.score.toFixed(2)}</dd></dl><pre>${wrapText(stage.text)}</pre></article>`).join('')}</div>`;
+      selectors.modernFinalStage.innerHTML = `<h3>${mt('final').replace('{leads}', leads)}</h3><dl class="modern-meta"><dt>${mt('window')}</dt><dd>${letter(best.initialPosition)}</dd><dt>${mt('plugboard')}</dt><dd>${formatModernPairs(best.final.pairs)}</dd><dt>${mt('score')}</dt><dd>${best.final.score.toFixed(2)}</dd><dt>${mt('plaintext')}</dt><dd></dd><dt>${mt('elapsed')}</dt><dd>${result.elapsed.toFixed(3)} ${mt('seconds')}</dd></dl><pre>${wrapText(best.final.text)}</pre>`;
+    }
+    let bombeState = Object.freeze({ result:null });
+    function menuInfo(crib, fragment) {
+      const adjacency = Object.fromEntries(ABC.split('').map(char => [char, []])), parent = Object.fromEntries(ABC.split('').map(char => [char, char])), degree = Object.fromEntries(ABC.split('').map(char => [char, 0])), used = new Set(), cycleVertices = new Set();
+      const find = char => { while (parent[char] !== char) { parent[char] = parent[parent[char]]; char = parent[char]; } return char; };
+      [...crib].forEach((plain, i) => {
+        const cipher = fragment[i]; adjacency[plain].push(cipher); adjacency[cipher].push(plain); degree[plain]++; degree[cipher]++; used.add(plain); used.add(cipher);
+        const left = find(plain), right = find(cipher); if (left === right) { cycleVertices.add(plain); cycleVertices.add(cipher); } else parent[left] = right;
+      });
+      const loopComponents = [], unseen = new Set(used); let components = 0;
+      while (unseen.size) {
+        components++; const stack = [unseen.values().next().value], vertices = [];
+        unseen.delete(stack[0]);
+        while (stack.length) { const node = stack.pop(); vertices.push(node); for (const next of adjacency[node]) if (unseen.delete(next)) stack.push(next); }
+        const edgeCount = vertices.reduce((total, node) => total + adjacency[node].length, 0) / 2, loops = edgeCount - vertices.length + 1;
+        if (loops > 0) {
+          const anchor = vertices.filter(char => cycleVertices.has(char)).sort((a, b) => degree[b] - degree[a] || a.localeCompare(b))[0];
+          loopComponents.push(Object.freeze({ anchor, loops, vertices:Object.freeze([...vertices].sort()) }));
+        }
+      }
+      return Object.freeze({ loops:crib.length - used.size + components, loopComponents:Object.freeze(loopComponents), edges:Object.freeze([...crib].map((plain, i) => `${plain}-${fragment[i]}`)) });
+    }
+    function bombeEquations(crib, fragment, offset, initialPosition) {
+      const identity = Object.freeze(Object.fromEntries(ABC.split('').map(char => [char, char]))); let position = initialPosition;
+      for (let i = 0; i < offset; i++) position = (position + 1) % 26;
+      return Object.freeze([...crib].map((plain, i) => {
+        position = (position + 1) % 26; const snapshot = createMachineSnapshot(position, identity), core = Object.fromEntries(ABC.split('').map(char => [char, buildTrace(snapshot, char).output]));
+        const inverse = Object.fromEntries(Object.entries(core).map(([input, output]) => [output, input])); return Object.freeze({ cribIndex:i + 1, plain, cipher:fragment[i], core:Object.freeze(core), inverse:Object.freeze(inverse) });
+      }));
+    }
+    function propagateBombe(equations, seeds) {
+      const map = new Map(), origins = new Map();
+      const assign = (left, right, source) => {
+        if (map.has(left) && map.get(left) !== right) return Object.freeze({ letter:left, current:map.get(left), required:right, previous:origins.get(left), next:source });
+        if (map.has(right) && map.get(right) !== left) return Object.freeze({ letter:right, current:map.get(right), required:left, previous:origins.get(right), next:source });
+        if (!map.has(left)) { map.set(left, right); map.set(right, left); origins.set(left, source); origins.set(right, source); }
+        return null;
+      };
+      for (const seed of seeds) { const conflict = assign(seed[0], seed[1], Object.freeze({ kind:'seed' })); if (conflict) return Object.freeze({ issue:Object.freeze({ conflict }) }); }
+      let changed = true;
+      while (changed) { const before = map.size; for (const equation of equations) {
+        const source = Object.freeze({ kind:'crib', index:equation.cribIndex, plain:equation.plain, cipher:equation.cipher });
+        if (map.has(equation.plain)) { const conflict = assign(equation.core[map.get(equation.plain)], equation.cipher, source); if (conflict) return Object.freeze({ issue:Object.freeze({ ...equation, conflict }) }); }
+        if (map.has(equation.cipher)) { const conflict = assign(equation.plain, equation.inverse[map.get(equation.cipher)], source); if (conflict) return Object.freeze({ issue:Object.freeze({ ...equation, conflict }) }); }
+      } changed = map.size !== before; }
+      return Object.freeze({ map });
+    }
+    // D-stage refinement starts from facts already inferred by a surviving stop.
+    // It uses the same bidirectional constraint propagation as the menu test;
+    // the word recognizer supplies only proposed plaintext fragments and never
+    // writes directly to the plugboard model.
+    function propagateBombeFromMap(equations, startingMap) {
+      const map = new Map(startingMap), derivations = [];
+      const assign = (left, right, derivation) => {
+        if (map.has(left) && map.get(left) !== right) return Object.freeze({ letter:left, current:map.get(left), required:right });
+        if (map.has(right) && map.get(right) !== left) return Object.freeze({ letter:right, current:map.get(right), required:left });
+        if (!map.has(left)) { map.set(left, right); map.set(right, left); derivations.push(Object.freeze({ ...derivation, left, right })); }
+        return null;
+      };
+      let changed = true;
+      while (changed) {
+        const before = map.size;
+        for (const equation of equations) {
+          if (map.has(equation.plain)) {
+            const known = map.get(equation.plain), core = equation.core[known];
+            const conflict = assign(core, equation.cipher, Object.freeze({ direction:'forward', ...equation, known, core }));
+            if (conflict) return Object.freeze({ issue:Object.freeze({ ...equation, conflict }) });
+          }
+          if (map.has(equation.cipher)) {
+            const known = map.get(equation.cipher), core = equation.inverse[known];
+            const conflict = assign(equation.plain, core, Object.freeze({ direction:'reverse', ...equation, known, core }));
+            if (conflict) return Object.freeze({ issue:Object.freeze({ ...equation, conflict }) });
+          }
+        }
+        changed = map.size !== before;
+      }
+      return Object.freeze({ map, derivations:Object.freeze(derivations) });
+    }
+    function partnerCombinations(count) {
+      let combinations = [[]];
+      for (let i = 0; i < count; i++) combinations = combinations.flatMap(prefix => ABC.split('').map(partner => [...prefix, partner]));
+      return combinations;
+    }
+    function mapPairs(map) { return [...map.entries()].filter(([left,right]) => left <= right).map(([left,right]) => `${left}↔${right}`).join(' ') || '—'; }
+    function physicalMapPairs(map) { return [...map.entries()].filter(([left,right]) => left < right).map(([left,right]) => `${left}↔${right}`).join(' ') || '—'; }
+    function confirmedUnplugged(map) { return ABC.split('').filter(char => map.get(char) === char).map(char => `${char}→${char}`).join(' ') || '—'; }
+    function newlyInferredPairs(before, after) { return [...after.entries()].filter(([left,right]) => left <= right && !before.has(left)).map(([left,right]) => `${left}↔${right}`).join(' ') || '—'; }
+    function formatRefinementDerivation(item) {
+      const key = item.direction === 'forward' ? 'refinementForward' : 'refinementReverse';
+      return bmt(key).replaceAll('{index}', item.cribIndex).replaceAll('{plain}', item.plain).replaceAll('{cipher}', item.cipher).replaceAll('{known}', item.known).replaceAll('{core}', item.core);
+    }
+    function selfMappingEvidence(refinement, best, crib) {
+      const sources = new Map();
+      refinement.accepted.forEach(({ clue, derivations }) => derivations.filter(item => item.left === item.right).forEach(item => sources.set(item.left, Object.freeze({ clue, item }))));
+      return ABC.split('').filter(char => refinement.map.get(char) === char).map(char => {
+        const source = sources.get(char), explanation = source
+          ? `${source.clue.word}: ${formatRefinementDerivation(source.item)}`
+          : bmt('refinementFromStop').replace('{crib}', crib);
+        return `<li><strong>${char}→${char}</strong> — ${escapeHtml(explanation)}</li>`;
+      }).join('');
+    }
+    function refineBombeStopWithWords(stop, ciphertext) {
+      let map = new Map(stop.map); const accepted = [], rejected = [];
+      for (const clue of stop.contentWords) {
+        const equations = bombeEquations(clue.word, ciphertext.slice(clue.at, clue.at + clue.word.length), clue.at, stop.initialPosition);
+        const result = propagateBombeFromMap(equations, map);
+        if (result.issue) { rejected.push(Object.freeze({ clue, issue:result.issue })); continue; }
+        const addedContacts = result.map.size - map.size, newPairs = newlyInferredPairs(map, result.map);
+        map = result.map;
+        if (addedContacts) accepted.push(Object.freeze({ clue, addedPairs:addedContacts / 2, newPairs, derivations:result.derivations }));
+      }
+      const board = Object.fromEntries(ABC.split('').map(char => [char, map.get(char) ?? char]));
+      const partial = lettersOnly(encryptFromInitialPosition(ciphertext, stop.initialPosition, board, true));
+      return Object.freeze({ map, accepted:Object.freeze(accepted), rejected:Object.freeze(rejected), partial, complete:map.size === ABC.length });
+    }
+    function escapeHtml(value) { return String(value).replace(/[&<>'"]/g, char => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#39;', '"':'&quot;' })[char]); }
+    function formatBombeIssue(issue, seeds) {
+      const assumption = seeds.join(', '), conflict = issue.conflict;
+      if (!issue.cribIndex) return bmt('seedConflict').replace('{seeds}', assumption).replace('{letter}', conflict.letter).replace('{current}', conflict.current).replace('{required}', conflict.required);
+      const previous = conflict.previous, firstFact = previous?.kind === 'crib'
+        ? bmt('previousCribFact').replace('{index}', previous.index).replace('{plain}', previous.plain).replace('{cipher}', previous.cipher).replace('{letter}', conflict.letter).replace('{current}', conflict.current)
+        : bmt('previousSeedFact').replace('{letter}', conflict.letter).replace('{current}', conflict.current);
+      return bmt('menuConflictTrace').replace('{seeds}', assumption).replace('{firstFact}', firstFact).replace('{index}', issue.cribIndex).replace('{plain}', issue.plain).replace('{cipher}', issue.cipher).replace('{letter}', conflict.letter).replace('{required}', conflict.required);
+    }
+    async function runSoftwareBombe() {
+      const crib = lettersOnly(selectors.bombeCrib.value), ciphertext = lettersOnly(DEFAULT_CIPHERTEXT);
+      if (crib.length < 2) { selectors.bombeNotice.textContent = bmt('invalid'); return; }
+      const legal = [], menus = [];
+      for (let offset = 0; offset <= ciphertext.length - crib.length; offset++) {
+        const fragment = ciphertext.slice(offset, offset + crib.length);
+        if ([...crib].some((plain, i) => plain === fragment[i])) continue;
+        legal.push(offset);
+        const menu = menuInfo(crib, fragment);
+        if (menu.loops > 0 && menu.loopComponents.length) {
+          const anchors = Object.freeze(menu.loopComponents.map(component => component.anchor));
+          menus.push(Object.freeze({ offset, fragment, menu, anchors, hypothesesPerWindow:26 ** anchors.length, hypothesisCount:26 * 26 ** anchors.length }));
+        }
+      }
+      if (!menus.length) { selectors.bombeNotice.textContent = bmt('noLoop'); return; }
+      selectors.bombeRun.disabled = true; selectors.bombeProgress.hidden = false; selectors.bombeProgressBar.max = menus.reduce((sum, candidate) => sum + candidate.hypothesisCount, 0); selectors.bombeProgressBar.value = 0; selectors.bombeNotice.textContent = '';
+      let model = null;
+      try { model = await loadModernModel(selectors.bombeModelFile.files?.[0] ?? selectors.modernFile.files?.[0]); } catch (_) { selectors.bombeNotice.textContent = bmt('modelFailed'); }
+      const candidates = [], allStops = [];
+      try {
+        let completedHypotheses = 0;
+        for (let candidateIndex = 0; candidateIndex < menus.length; candidateIndex++) {
+          const candidate = menus[candidateIndex], windowRows = [], stops = [];
+          for (let initialPosition = 0; initialPosition < 26; initialPosition++) {
+            const equations = bombeEquations(crib, candidate.fragment, candidate.offset, initialPosition);
+            const tests = partnerCombinations(candidate.anchors.length).map(partners => Object.freeze({ partners:Object.freeze(partners), result:propagateBombe(equations, candidate.anchors.map((anchor, i) => [anchor, partners[i]])) }));
+            const rejected = tests.filter(test => test.result.issue), firstIssue = rejected[0];
+            const firstSeeds = firstIssue ? candidate.anchors.map((anchor, i) => `${anchor}↔${firstIssue.partners[i]}`) : [];
+            windowRows.push(Object.freeze({ initialPosition, hypotheses:tests.length, rejected:rejected.length, example:firstIssue ? formatBombeIssue(firstIssue.result.issue, firstSeeds) : '—' }));
+            for (const test of tests.filter(test => test.result.map)) {
+              const board = Object.fromEntries(ABC.split('').map(char => [char, test.result.map.get(char) ?? char]));
+              const partial = lettersOnly(encryptFromInitialPosition(DEFAULT_CIPHERTEXT, initialPosition, board, true));
+              const seeds = candidate.anchors.map((anchor, i) => `${anchor}↔${test.partners[i]}`).join(', ');
+              const stop = Object.freeze({ offset:candidate.offset, fragment:candidate.fragment, menu:candidate.menu, initialPosition, seeds, map:test.result.map, partial, contentWords:recognizeContentWords(partial), score:model ? quadScore(partial, model.table, model.floor) : null });
+              stops.push(stop); allStops.push(stop);
+            }
+            completedHypotheses += tests.length; selectors.bombeProgressBar.value = completedHypotheses;
+            selectors.bombeProgressText.textContent = bmt('running').replace('{candidate}', candidateIndex + 1).replace('{total}', menus.length).replace('{window}', letter(initialPosition)).replace('{done}', initialPosition + 1).replace('{perWindow}', candidate.hypothesesPerWindow);
+            await new Promise(resolve => setTimeout(resolve, 0));
+          }
+          candidates.push(Object.freeze({ ...candidate, windowRows:Object.freeze(windowRows), stops:Object.freeze(stops) }));
+        }
+        const ranked = [...allStops].sort((a, b) => model ? b.score - a.score : a.offset - b.offset || a.initialPosition - b.initialPosition);
+        const best = ranked[0] ?? null, refinement = best ? refineBombeStopWithWords(best, ciphertext) : null;
+        bombeState = Object.freeze({ result:Object.freeze({ crib, legalAlignmentCount:legal.length, candidates:Object.freeze(candidates), stops:Object.freeze(ranked), best, refinement, model:!!model, modelSource:model?.source ?? null }) });
+        selectors.bombeNotice.textContent = bmt('notice').replace('{menus}', menus.length).replace('{stops}', ranked.length);
+      } finally {
+        selectors.bombeRun.disabled = false; selectors.bombeProgress.hidden = true; renderBombeResults();
+      }
+    }
+    function renderBombeResults() {
+      selectors.bombeCiphertext.textContent = lettersOnly(DEFAULT_CIPHERTEXT);
+      const result = bombeState.result;
+      if (!result) { selectors.bombeStopsSummary.textContent = bmt('stageStops'); selectors.bombeMenuStage.textContent = '—'; selectors.bombeExcludedStage.textContent = '—'; selectors.bombeStopsStage.textContent = '—'; selectors.bombeBestStage.textContent = '—'; selectors.bombeRefinementStage.textContent = '—'; return; }
+      const anchors = candidate => candidate.anchors.join(', ');
+      const candidateSummary = candidate => bmt('candidateMenuWithStops').replace('{offset}', candidate.offset + 1).replace('{loops}', candidate.menu.loops).replace('{anchors}', anchors(candidate));
+      const exclusionSummary = candidate => {
+        const rejected = candidate.windowRows.reduce((sum, row) => sum + row.rejected, 0), key = candidate.stops.length ? 'candidateExcluded' : 'candidateExcludedNone';
+        return bmt(key).replace('{offset}', candidate.offset + 1).replace('{rejected}', rejected).replace('{trials}', candidate.hypothesisCount).replace('{stops}', candidate.stops.length);
+      };
+      selectors.bombeMenuStage.innerHTML = `<p>${bmt('menuStageNote')}</p><p>${bmt('alignmentSummary').replace('{legal}', result.legalAlignmentCount).replace('{menus}', result.candidates.length)}</p><div class="modern-rounds">${result.candidates.map(candidate => `<details class="modern-round"><summary>${candidateSummary(candidate)}</summary><p>${bmt('menu').replace('{offset}', candidate.offset + 1).replace('{crib}', result.crib).replace('{cipher}', candidate.fragment).replace('{loops}', candidate.menu.loops).replace('{anchors}', anchors(candidate))}</p><pre>${candidate.menu.edges.join('  ')}</pre></details>`).join('')}</div>`;
+      selectors.bombeExcludedStage.innerHTML = `<p>${bmt('exclusionStageNote')}</p><div class="modern-rounds">${result.candidates.map(candidate => `<details class="modern-round"><summary>${exclusionSummary(candidate)}</summary><div class="modern-rounds">${candidate.windowRows.map(row => `<article class="modern-round">${bmt('rejected').replace('{window}', letter(row.initialPosition)).replace('{count}', row.rejected).replace('{trials}', row.hypotheses).replace('{example}', row.example)}</article>`).join('')}</div></details>`).join('')}</div>`;
+      const survivingCandidates = result.candidates.filter(candidate => candidate.stops.length > 0);
+      selectors.bombeStopsSummary.textContent = bmt('stageStopsCount').replace('{candidates}', survivingCandidates.length).replace('{stops}', result.stops.length);
+      selectors.bombeStopsStage.innerHTML = survivingCandidates.length ? `<p>${bmt('stopsStageNote')}</p><p>${bmt('stopsCountNote').replace('{candidates}', survivingCandidates.length).replace('{stops}', result.stops.length)}</p><div class="modern-rounds">${survivingCandidates.map(candidate => `<details class="modern-round"><summary>${bmt('candidateStops').replace('{offset}', candidate.offset + 1).replace('{stops}', candidate.stops.length)}</summary><div class="modern-rounds">${candidate.stops.map(stop => `<article class="modern-round"><strong>${bmt('stop').replace('{window}', letter(stop.initialPosition)).replace('{seeds}', stop.seeds).replace('{pairs}', mapPairs(stop.map)).replace('{score}', stop.score === null ? '—' : stop.score.toFixed(2))}</strong><p>${bmt('partial')}</p><pre>${wrapText(stop.partial)}</pre></article>`).join('')}</div></details>`).join('')}</div>` : `<p>${bmt('noStopsStage')}</p>`;
+      const best = result.best;
+      if (!best) { selectors.bombeBestStage.textContent = '—'; selectors.bombeRefinementStage.textContent = '—'; return; }
+      const modelSource = result.modelSource, modelDisplay = modelSource?.url ? `<a href="${escapeHtml(modelSource.url)}" target="_blank" rel="noopener">${escapeHtml(modelSource.label)}</a>` : escapeHtml(modelSource?.label ?? '—');
+      const words = best.contentWords.map(item => `${item.kind === 'near' ? '≈ ' : ''}${item.word}${item.count > 1 ? ` ×${item.count}` : ''}${item.kind === 'near' ? ` (${item.seen})` : ''}`).join(' · ');
+      const refinement = result.refinement;
+      const acceptedClues = refinement?.accepted.map(({ clue, newPairs, derivations }) => `<div>${clue.kind === 'near' ? '≈ ' : ''}${escapeHtml(clue.word)}${clue.kind === 'near' ? ` (${escapeHtml(clue.seen)})` : ''}: ${escapeHtml(newPairs)}${derivations.map(item => `<br><small>↳ ${escapeHtml(formatRefinementDerivation(item))}</small>`).join('')}</div>`).join('') || bmt('refinementNone');
+      const refinementHtml = refinement ? `<p>${bmt('refinementNote')}</p><p><strong>${bmt('refinementAccepted')} (${bmt('refinementAdds')}):</strong><br>${acceptedClues}</p><dl class="modern-meta"><dt>${bmt('refinementPairs')}</dt><dd>${physicalMapPairs(refinement.map)}</dd><dt>${bmt('refinementUnplugged')}</dt><dd>${confirmedUnplugged(refinement.map)}</dd></dl><p>${bmt('refinementUnpluggedNote')}</p><details class="modern-round"><summary>${bmt('refinementUnpluggedDetails')}</summary><ul>${selfMappingEvidence(refinement, best, result.crib)}</ul></details><p>${bmt('refinementPartial')}</p><pre>${wrapText(refinement.partial)}</pre><p>${refinement.complete ? bmt('refinementComplete') : bmt('refinementIncomplete')}</p>` : '—';
+      selectors.bombeBestStage.innerHTML = `<p>${bmt('bestStageNote')}</p><p>${result.model ? bmt('scoreStageNote') : bmt('scoreUnavailable')}</p><h3>${bmt('best')}</h3><dl class="modern-meta"><dt>${bmt('finalOffset')}</dt><dd>${best.offset + 1}</dd><dt>${bmt('finalWindow')}</dt><dd>${letter(best.initialPosition)}</dd><dt>${bmt('finalSeed')}</dt><dd>${best.seeds}</dd><dt>${bmt('finalPairs')}</dt><dd>${mapPairs(best.map)}</dd><dt>${bmt('finalModel')}</dt><dd>${modelDisplay}</dd><dt>${bmt('finalScore')}</dt><dd>${best.score === null ? '—' : best.score.toFixed(2)}</dd></dl><h4>${bmt('contentWords')}</h4><p>${bmt('contentWordsNote')}</p><p>${words || bmt('contentWordsNone')}</p><p>${bmt('partial')}</p><pre>${wrapText(best.partial)}</pre><p>${bmt('resultNote')}</p>`;
+      selectors.bombeRefinementStage.innerHTML = refinementHtml;
     }
     function stopAnimationTimers() {
       clearTimeout(animationTimer); animationTimers.forEach(clearTimeout); animationTimers = [];
@@ -357,15 +833,19 @@
     document.querySelector('#resetRotor').addEventListener('click', () => { stopAnimationTimers(); rotorState.position = rotorState.initialPosition; rotorState.visualAngle = -rotorState.position * ROTOR_STEP_ANGLE; rotorState.trace = null; if (refreshSnapshot()) { clearSignalHighlights(); renderPlugboardRing(rotorState.snapshot.plugboard); renderRotor(); } });
     selectors.stepping.addEventListener('change', renderRotor);
     function selectTab(name) {
-      const machine = name === 'machine';
-      document.querySelector('#machinePanel').hidden = !machine;
-      document.querySelector('#principlesPanel').hidden = machine;
+      document.querySelector('#machinePanel').hidden = name !== 'machine';
+      document.querySelector('#modernPanel').hidden = name !== 'modern';
+      document.querySelector('#bombePanel').hidden = name !== 'bombe';
+      document.querySelector('#principlesPanel').hidden = name !== 'principles';
       document.querySelectorAll('.tab').forEach(tab => tab.setAttribute('aria-selected', String(tab.dataset.tab === name)));
     }
     document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => selectTab(tab.dataset.tab)));
     document.querySelector('#languageToggle').addEventListener('click', () => { language = language === 'zh' ? 'en' : 'zh'; applyLanguage(); });
     selectors.plugs.addEventListener('input', () => { stopAnimationTimers(); rotorState.trace = null; if (refreshSnapshot()) { clearSignalHighlights(); renderPlugboardRing(rotorState.snapshot.plugboard); renderRotor(); } });
     document.querySelector('#sampleMessage').addEventListener('click', () => { selectors.input.value = SAMPLE_MESSAGE; selectors.status.textContent = t('sampleLoaded'); });
+    selectors.modernLeadCount.addEventListener('change', () => { if (!modernState.result) renderModernResults(); });
+    selectors.modernRun.addEventListener('click', runModernCrack);
+    selectors.bombeRun.addEventListener('click', runSoftwareBombe);
     document.querySelector('#batchProcess').addEventListener('click', () => {
       const raw = selectors.input.value, normalized = raw.toUpperCase(); let encrypted = '', letters = 0;
       if (!plugMapping()) return;
