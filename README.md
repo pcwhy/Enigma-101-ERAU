@@ -1,4 +1,4 @@
-# Enigma HTML Teaching Apps
+# A Hackable Enigma and Bombe Machine Simulator 
 
 This repository contains two standalone HTML teaching apps for exploring simplified Enigma machines and software-based cryptanalysis demonstrations.
 
